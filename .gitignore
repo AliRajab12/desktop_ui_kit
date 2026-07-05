@@ -1,0 +1,27 @@
+# Flutter
+.dart_tool/
+build/
+*.iml
+*.lock
+**/generated/
+*.g.dart
+*.freezed.dart
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Credentials
+.env
+*.key
+*.pem
+
+# Coverage
+coverage/
