@@ -1,0 +1,38 @@
+name: desktop_ui_kit
+description: A comprehensive, platform-adaptive desktop widget library for Flutter.
+  Native OS conventions, keyboard-first navigation, full accessibility, and design
+  tokens for Windows (Fluent), macOS (HIG), and Linux (GNOME/GTK).
+version: 0.1.0
+homepage: https://github.com/AliRajab12/desktop_ui_kit
+repository: https://github.com/AliRajab12/desktop_ui_kit
+issue_tracker: https://github.com/AliRajab12/desktop_ui_kit/issues
+documentation: https://github.com/AliRajab12/desktop_ui_kit/tree/main/docs
+funding:
+  - https://github.com/sponsors/AliRajab12
+
+topics:
+  - desktop
+  - ui
+  - widgets
+  - windows
+  - macos
+  - linux
+  - design-system
+
+environment:
+  sdk: ">=3.11.0 <4.0.0"
+  flutter: ">=3.41.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+platforms:
+  windows:
+  macos:
+  linux:

@@ -1,0 +1,192 @@
+import 'dart:ui';
+
+class DesktopColorScheme {
+  final Color accent;
+  final Color accentHover;
+  final Color accentPressed;
+  final Color accentText;
+
+  final Color surface;
+  final Color surfaceHover;
+  final Color surfacePressed;
+  final Color surfaceContainer;
+  final Color surfaceElevated;
+
+  final Color textPrimary;
+  final Color textSecondary;
+  final Color textTertiary;
+  final Color textDisabled;
+
+  final Color border;
+  final Color borderFocused;
+  final Color borderDisabled;
+
+  final Color danger;
+  final Color dangerHover;
+  final Color dangerPressed;
+  final Color dangerText;
+
+  final Color warning;
+  final Color warningText;
+
+  final Color success;
+  final Color successText;
+
+  final Color info;
+  final Color infoText;
+
+  final Color backdrop;
+
+  final bool isDark;
+
+  const DesktopColorScheme({
+    required this.accent,
+    required this.accentHover,
+    required this.accentPressed,
+    required this.accentText,
+    required this.surface,
+    required this.surfaceHover,
+    required this.surfacePressed,
+    required this.surfaceContainer,
+    required this.surfaceElevated,
+    required this.textPrimary,
+    required this.textSecondary,
+    required this.textTertiary,
+    required this.textDisabled,
+    required this.border,
+    required this.borderFocused,
+    required this.borderDisabled,
+    required this.danger,
+    required this.dangerHover,
+    required this.dangerPressed,
+    required this.dangerText,
+    required this.warning,
+    required this.warningText,
+    required this.success,
+    required this.successText,
+    required this.info,
+    required this.infoText,
+    required this.backdrop,
+    required this.isDark,
+  });
+
+  static const _accent = Color(0xFF0066CC);
+  static const _accentDark = Color(0xFF4CA3FF);
+  static const _danger = Color(0xFFD32F2F);
+  static const _dangerDark = Color(0xFFFF6B6B);
+  static const _warning = Color(0xFFF59E0B);
+  static const _success = Color(0xFF10B981);
+  static const _info = Color(0xFF3B82F6);
+
+  static const DesktopColorScheme light = DesktopColorScheme(
+    accent: _accent,
+    accentHover: Color(0xFF0052A3),
+    accentPressed: Color(0xFF003D7A),
+    accentText: Color(0xFFFFFFFF),
+    surface: Color(0xFFF9FAFB),
+    surfaceHover: Color(0xFFF3F4F6),
+    surfacePressed: Color(0xFFE5E7EB),
+    surfaceContainer: Color(0xFFFFFFFF),
+    surfaceElevated: Color(0xFFFFFFFF),
+    textPrimary: Color(0xFF111827),
+    textSecondary: Color(0xFF4B5563),
+    textTertiary: Color(0xFF9CA3AF),
+    textDisabled: Color(0xFFD1D5DB),
+    border: Color(0xFFD1D5DB),
+    borderFocused: _accent,
+    borderDisabled: Color(0xFFE5E7EB),
+    danger: _danger,
+    dangerHover: Color(0xFFC62828),
+    dangerPressed: Color(0xFFB71C1C),
+    dangerText: Color(0xFFFFFFFF),
+    warning: _warning,
+    warningText: Color(0xFF1C1917),
+    success: _success,
+    successText: Color(0xFFFFFFFF),
+    info: _info,
+    infoText: Color(0xFFFFFFFF),
+    backdrop: Color(0x33000000),
+    isDark: false,
+  );
+
+  static const DesktopColorScheme dark = DesktopColorScheme(
+    accent: _accentDark,
+    accentHover: Color(0xFF66B5FF),
+    accentPressed: Color(0xFF80C2FF),
+    accentText: Color(0xFF000000),
+    surface: Color(0xFF1A1B1E),
+    surfaceHover: Color(0xFF25262B),
+    surfacePressed: Color(0xFF2C2E33),
+    surfaceContainer: Color(0xFF25262B),
+    surfaceElevated: Color(0xFF2C2E33),
+    textPrimary: Color(0xFFF3F4F6),
+    textSecondary: Color(0xFF9CA3AF),
+    textTertiary: Color(0xFF6B7280),
+    textDisabled: Color(0xFF4B5563),
+    border: Color(0xFF3F3F46),
+    borderFocused: _accentDark,
+    borderDisabled: Color(0xFF27272A),
+    danger: _dangerDark,
+    dangerHover: Color(0xFFFF8A8A),
+    dangerPressed: Color(0xFFFFA8A8),
+    dangerText: Color(0xFF000000),
+    warning: _warning,
+    warningText: Color(0xFF1C1917),
+    success: _success,
+    successText: Color(0xFFFFFFFF),
+    info: _info,
+    infoText: Color(0xFFFFFFFF),
+    backdrop: Color(0x66000000),
+    isDark: true,
+  );
+
+  DesktopColorScheme copyWith({
+    Color? accent,
+    Color? accentHover,
+    Color? accentPressed,
+    Color? accentText,
+    Color? surface,
+    Color? surfaceHover,
+    Color? surfacePressed,
+    Color? surfaceContainer,
+    Color? surfaceElevated,
+    Color? textPrimary,
+    Color? textSecondary,
+    Color? textTertiary,
+    Color? textDisabled,
+    Color? border,
+    Color? borderFocused,
+    Color? borderDisabled,
+  }) {
+    return DesktopColorScheme(
+      accent: accent ?? this.accent,
+      accentHover: accentHover ?? this.accentHover,
+      accentPressed: accentPressed ?? this.accentPressed,
+      accentText: accentText ?? this.accentText,
+      surface: surface ?? this.surface,
+      surfaceHover: surfaceHover ?? this.surfaceHover,
+      surfacePressed: surfacePressed ?? this.surfacePressed,
+      surfaceContainer: surfaceContainer ?? this.surfaceContainer,
+      surfaceElevated: surfaceElevated ?? this.surfaceElevated,
+      textPrimary: textPrimary ?? this.textPrimary,
+      textSecondary: textSecondary ?? this.textSecondary,
+      textTertiary: textTertiary ?? this.textTertiary,
+      textDisabled: textDisabled ?? this.textDisabled,
+      border: border ?? this.border,
+      borderFocused: borderFocused ?? this.borderFocused,
+      borderDisabled: borderDisabled ?? this.borderDisabled,
+      danger: danger,
+      dangerHover: dangerHover,
+      dangerPressed: dangerPressed,
+      dangerText: dangerText,
+      warning: warning,
+      warningText: warningText,
+      success: success,
+      successText: successText,
+      info: info,
+      infoText: infoText,
+      backdrop: backdrop,
+      isDark: isDark,
+    );
+  }
+}
