@@ -14,10 +14,8 @@ topics:
   - desktop
   - ui
   - widgets
-  - windows
-  - macos
-  - linux
   - design-system
+  - cross-platform
 
 environment:
   sdk: ">=3.11.0 <4.0.0"
