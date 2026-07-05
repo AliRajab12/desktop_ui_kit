@@ -130,6 +130,10 @@ typography.code      // Monospace stack
 
 ---
 
+## Contact
+
+Created by **Ali Rajab** — [alirajab.dev@gmail.com](mailto:alirajab.dev@gmail.com)
+
 ## License
 
 MIT
