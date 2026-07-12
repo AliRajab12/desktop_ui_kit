@@ -2,14 +2,30 @@ import 'package:flutter/material.dart';
 import '../theme/app.dart';
 import '../theme/tokens.dart';
 
+/// A node in a [DesktopTreeView].
+///
+/// Represents a single item in the tree hierarchy with support for
+/// nested children, icons, and custom data.
 class TreeNode {
+  /// Unique identifier for this node.
   final String key;
+
+  /// Display label for the node.
   final String label;
+
+  /// Optional icon displayed before the label.
   final IconData? icon;
+
+  /// Child nodes nested under this node.
   final List<TreeNode> children;
+
+  /// Whether the node starts expanded.
   final bool initiallyExpanded;
+
+  /// Optional custom data associated with this node.
   final dynamic data;
 
+  /// Creates a tree node.
   const TreeNode({
     required this.key,
     required this.label,
@@ -19,14 +35,43 @@ class TreeNode {
     this.data,
   });
 
+  /// Whether this node has no children.
   bool get isLeaf => children.isEmpty;
 }
 
+/// A native-style tree view for hierarchical data.
+///
+/// Supports expandable nodes, selection, and custom icons.
+/// Use [TreeNode] to define the tree structure.
+///
+/// Example:
+/// ```dart
+/// DesktopTreeView(
+///   roots: [
+///     TreeNode(
+///       key: 'root',
+///       label: 'Documents',
+///       icon: Icons.folder,
+///       children: [
+///         TreeNode(key: 'doc1', label: 'readme.md'),
+///         TreeNode(key: 'doc2', label: 'notes.txt'),
+///       ],
+///     ),
+///   ],
+///   onSelect: (key) => print('Selected: $key'),
+/// )
+/// ```
 class DesktopTreeView extends StatefulWidget {
+  /// The root-level nodes of the tree.
   final List<TreeNode> roots;
+
+  /// The key of the currently selected node, or null if none selected.
   final String? selectedKey;
+
+  /// Callback when a node is tapped.
   final ValueChanged<String>? onSelect;
 
+  /// Creates a tree view.
   const DesktopTreeView({
     super.key,
     required this.roots,

@@ -3,17 +3,28 @@ import 'colors.dart';
 import 'tokens.dart';
 import 'typography.dart';
 
+/// Complete theme data for desktop styling.
+///
+/// Contains color scheme, typography, and theme mode.
+/// Use [DesktopThemeData.light] or [DesktopThemeData.dark] for built-in themes.
 class DesktopThemeData {
+  /// The color scheme for the theme.
   final DesktopColorScheme colors;
+
+  /// The text styles for the theme.
   final DesktopTextStyle typography;
+
+  /// Whether this is a dark theme.
   final bool isDark;
 
+  /// Creates theme data with the given colors and typography.
   const DesktopThemeData({
     required this.colors,
     required this.typography,
     required this.isDark,
   });
 
+  /// Creates a light theme with platform-adaptive typography.
   factory DesktopThemeData.light() => DesktopThemeData(
         colors: DesktopColorScheme.light,
         typography:
@@ -21,6 +32,7 @@ class DesktopThemeData {
         isDark: false,
       );
 
+  /// Creates a dark theme with platform-adaptive typography.
   factory DesktopThemeData.dark() => DesktopThemeData(
         colors: DesktopColorScheme.dark,
         typography:
@@ -28,6 +40,7 @@ class DesktopThemeData {
         isDark: true,
       );
 
+  /// Converts to a Material [ThemeData] for use with [MaterialApp].
   ThemeData toMaterialTheme() {
     final base = isDark ? ThemeData.dark() : ThemeData.light();
     return base.copyWith(

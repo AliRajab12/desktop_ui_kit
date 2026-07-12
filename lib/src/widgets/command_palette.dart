@@ -2,13 +2,26 @@ import 'package:flutter/material.dart';
 import '../theme/app.dart';
 import '../theme/tokens.dart';
 
+/// An entry in the [DesktopCommandPalette].
+///
+/// Represents a searchable command that can be executed by the user.
 class CommandPaletteEntry {
+  /// Unique identifier for this command.
   final String id;
+
+  /// Display title of the command.
   final String title;
+
+  /// Optional subtitle or shortcut hint displayed on the right.
   final String? subtitle;
+
+  /// Optional icon displayed before the title.
   final IconData? icon;
+
+  /// Callback executed when the command is selected.
   final VoidCallback action;
 
+  /// Creates a command palette entry.
   const CommandPaletteEntry({
     required this.id,
     required this.title,
@@ -18,11 +31,30 @@ class CommandPaletteEntry {
   });
 }
 
+/// A searchable command palette for executing actions.
+///
+/// Displays a modal dialog with a search field and filterable list of commands.
+/// Use [show] to display the palette as a modal overlay.
+///
+/// Example:
+/// ```dart
+/// DesktopCommandPalette.show(context, [
+///   CommandPaletteEntry(
+///     id: 'save',
+///     title: 'Save',
+///     icon: Icons.save,
+///     action: () => save(),
+///   ),
+/// ]);
+/// ```
 class DesktopCommandPalette extends StatefulWidget {
+  /// The list of available commands to display.
   final List<CommandPaletteEntry> entries;
 
+  /// Creates a command palette widget.
   const DesktopCommandPalette({super.key, required this.entries});
 
+  /// Shows the command palette as a modal dialog.
   static Future<void> show(BuildContext context, List<CommandPaletteEntry> entries) {
     return showDialog(
       context: context,

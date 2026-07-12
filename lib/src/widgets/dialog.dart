@@ -2,13 +2,46 @@ import 'package:flutter/material.dart';
 import '../theme/app.dart';
 import '../theme/tokens.dart';
 
+/// A native-styled modal dialog for desktop applications.
+///
+/// Provides a title bar with close button, content area, and action buttons.
+/// Use [show] to display the dialog as a modal overlay.
+///
+/// Example:
+/// ```dart
+/// DesktopDialog.show(context, DesktopDialog(
+///   title: 'Confirm',
+///   content: Text('Are you sure?'),
+///   actions: [
+///     DesktopButton(
+///       label: 'Cancel',
+///       variant: DesktopButtonVariant.secondary,
+///       onPressed: () => Navigator.pop(context),
+///     ),
+///     DesktopButton(
+///       label: 'OK',
+///       onPressed: () => Navigator.pop(context, true),
+///     ),
+///   ],
+/// ));
+/// ```
 class DesktopDialog extends StatelessWidget {
+  /// The dialog title displayed in the header.
   final String title;
+
+  /// The main content widget.
   final Widget content;
+
+  /// Action buttons displayed in the footer.
   final List<Widget> actions;
+
+  /// Optional fixed width. Defaults to 420.
   final double? width;
+
+  /// Optional fixed height. If null, sizes to content.
   final double? height;
 
+  /// Creates a desktop dialog.
   const DesktopDialog({
     super.key,
     required this.title,
@@ -18,6 +51,7 @@ class DesktopDialog extends StatelessWidget {
     this.height,
   });
 
+  /// Shows the dialog as a modal overlay.
   static Future<T?> show<T>(BuildContext context, DesktopDialog dialog) {
     return showDialog<T>(
       context: context,
@@ -62,7 +96,7 @@ class DesktopDialog extends StatelessWidget {
                         style: typography.heading6,
                       ),
                     ),
-                    DesktopCloseButton(),
+                    const DesktopCloseButton(),
                   ],
                 ),
               ),
@@ -97,7 +131,11 @@ class DesktopDialog extends StatelessWidget {
   }
 }
 
+/// A close button for dialogs and panels.
+///
+/// Displays an X icon that closes the current route when tapped.
 class DesktopCloseButton extends StatelessWidget {
+  /// Creates a close button.
   const DesktopCloseButton({super.key});
 
   @override

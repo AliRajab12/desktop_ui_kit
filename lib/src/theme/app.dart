@@ -1,10 +1,25 @@
 import 'package:flutter/material.dart';
 import 'desktop_theme.dart';
 
+/// A complete desktop-styled application widget.
+///
+/// Wraps [MaterialApp] with desktop theming and provides access to
+/// [DesktopTheme] throughout the widget tree.
+///
+/// Example:
+/// ```dart
+/// DesktopApp(
+///   home: MyDesktopScreen(),
+/// )
+/// ```
 class DesktopApp extends StatefulWidget {
+  /// The home screen widget.
   final Widget home;
+
+  /// The theme mode (light, dark, or system).
   final ThemeMode themeMode;
 
+  /// Creates a desktop app.
   const DesktopApp({
     super.key,
     required this.home,
@@ -32,15 +47,21 @@ class _DesktopAppState extends State<DesktopApp> {
   }
 }
 
+/// Provides access to the desktop theme throughout the widget tree.
+///
+/// Use [DesktopTheme.of] to retrieve the current [DesktopThemeData].
 class DesktopTheme extends InheritedWidget {
+  /// The theme data for this widget subtree.
   final DesktopThemeData data;
 
+  /// Creates a desktop theme widget.
   const DesktopTheme({
     super.key,
     required this.data,
     required super.child,
   });
 
+  /// Returns the [DesktopThemeData] from the nearest [DesktopTheme] ancestor.
   static DesktopThemeData of(BuildContext context) {
     final widget = context.dependOnInheritedWidgetOfExactType<DesktopTheme>();
     assert(widget != null, 'No DesktopTheme found in context');

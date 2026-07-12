@@ -2,13 +2,26 @@ import 'package:flutter/material.dart';
 import '../theme/app.dart';
 import '../theme/tokens.dart';
 
+/// Defines a column in a [DesktopDataTable].
+///
+/// Specifies the column header, width, and cell rendering logic.
 class DesktopColumn {
+  /// The column header text.
   final String header;
+
+  /// Optional fixed width. If null, uses flexible width.
   final double? width;
+
+  /// Whether the column can be sorted by tapping the header.
   final bool sortable;
+
+  /// Whether the column can be resized by dragging.
   final bool resizable;
+
+  /// Builder function that creates a cell widget for the column's value.
   final Widget Function(dynamic value) cellBuilder;
 
+  /// Creates a data table column definition.
   const DesktopColumn({
     required this.header,
     this.width,
@@ -18,11 +31,38 @@ class DesktopColumn {
   });
 }
 
+/// A native-styled data table for displaying tabular data.
+///
+/// Supports column sorting, row selection, and custom cell rendering.
+/// Use [DesktopColumn] to define columns with sortable headers and cell builders.
+///
+/// Example:
+/// ```dart
+/// DesktopDataTable(
+///   columns: [
+///     DesktopColumn(
+///       header: 'Name',
+///       sortable: true,
+///       cellBuilder: (value) => Text(value),
+///     ),
+///   ],
+///   rows: [
+///     {'Name': 'Alice'},
+///     {'Name': 'Bob'},
+///   ],
+/// )
+/// ```
 class DesktopDataTable extends StatefulWidget {
+  /// Column definitions for the table.
   final List<DesktopColumn> columns;
+
+  /// Row data as a list of maps. Keys should match column headers.
   final List<Map<String, dynamic>> rows;
+
+  /// Optional field name used as the unique key for each row.
   final String? keyField;
 
+  /// Creates a desktop data table.
   const DesktopDataTable({
     super.key,
     required this.columns,

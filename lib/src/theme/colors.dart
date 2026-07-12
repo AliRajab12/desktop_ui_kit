@@ -1,44 +1,96 @@
 import 'dart:ui';
 
+/// A complete color scheme for desktop UI styling.
+///
+/// Contains all colors needed for widgets including surface, text, border,
+/// accent, and semantic colors (danger, warning, success, info).
+/// Use [light] or [dark] for built-in schemes.
 class DesktopColorScheme {
+  /// Primary accent color.
   final Color accent;
+
+  /// Accent color on hover.
   final Color accentHover;
+
+  /// Accent color when pressed.
   final Color accentPressed;
+
+  /// Text color on accent backgrounds.
   final Color accentText;
 
+  /// Default surface background color.
   final Color surface;
+
+  /// Surface color on hover.
   final Color surfaceHover;
+
+  /// Surface color when pressed.
   final Color surfacePressed;
+
+  /// Container background for elevated surfaces.
   final Color surfaceContainer;
+
+  /// Elevated surface background color.
   final Color surfaceElevated;
 
+  /// Primary text color.
   final Color textPrimary;
+
+  /// Secondary/muted text color.
   final Color textSecondary;
+
+  /// Tertiary/placeholder text color.
   final Color textTertiary;
+
+  /// Disabled text color.
   final Color textDisabled;
 
+  /// Default border color.
   final Color border;
+
+  /// Border color when focused.
   final Color borderFocused;
+
+  /// Disabled border color.
   final Color borderDisabled;
 
+  /// Danger/error color for destructive actions.
   final Color danger;
+
+  /// Danger color on hover.
   final Color dangerHover;
+
+  /// Danger color when pressed.
   final Color dangerPressed;
+
+  /// Text color on danger backgrounds.
   final Color dangerText;
 
+  /// Warning color for caution states.
   final Color warning;
+
+  /// Text color on warning backgrounds.
   final Color warningText;
 
+  /// Success color for positive states.
   final Color success;
+
+  /// Text color on success backgrounds.
   final Color successText;
 
+  /// Info color for informational states.
   final Color info;
+
+  /// Text color on info backgrounds.
   final Color infoText;
 
+  /// Backdrop/overlay color.
   final Color backdrop;
 
+  /// Whether this is a dark theme.
   final bool isDark;
 
+  /// Creates a color scheme with the given colors.
   const DesktopColorScheme({
     required this.accent,
     required this.accentHover,
@@ -78,6 +130,7 @@ class DesktopColorScheme {
   static const _success = Color(0xFF10B981);
   static const _info = Color(0xFF3B82F6);
 
+  /// Built-in light color scheme.
   static const DesktopColorScheme light = DesktopColorScheme(
     accent: _accent,
     accentHover: Color(0xFF0052A3),
@@ -109,6 +162,7 @@ class DesktopColorScheme {
     isDark: false,
   );
 
+  /// Built-in dark color scheme.
   static const DesktopColorScheme dark = DesktopColorScheme(
     accent: _accentDark,
     accentHover: Color(0xFF66B5FF),
@@ -140,6 +194,7 @@ class DesktopColorScheme {
     isDark: true,
   );
 
+  /// Creates a copy of this color scheme with optional overrides.
   DesktopColorScheme copyWith({
     Color? accent,
     Color? accentHover,
@@ -157,6 +212,18 @@ class DesktopColorScheme {
     Color? border,
     Color? borderFocused,
     Color? borderDisabled,
+    Color? danger,
+    Color? dangerHover,
+    Color? dangerPressed,
+    Color? dangerText,
+    Color? warning,
+    Color? warningText,
+    Color? success,
+    Color? successText,
+    Color? info,
+    Color? infoText,
+    Color? backdrop,
+    bool? isDark,
   }) {
     return DesktopColorScheme(
       accent: accent ?? this.accent,
@@ -175,18 +242,18 @@ class DesktopColorScheme {
       border: border ?? this.border,
       borderFocused: borderFocused ?? this.borderFocused,
       borderDisabled: borderDisabled ?? this.borderDisabled,
-      danger: danger,
-      dangerHover: dangerHover,
-      dangerPressed: dangerPressed,
-      dangerText: dangerText,
-      warning: warning,
-      warningText: warningText,
-      success: success,
-      successText: successText,
-      info: info,
-      infoText: infoText,
-      backdrop: backdrop,
-      isDark: isDark,
+      danger: danger ?? this.danger,
+      dangerHover: dangerHover ?? this.dangerHover,
+      dangerPressed: dangerPressed ?? this.dangerPressed,
+      dangerText: dangerText ?? this.dangerText,
+      warning: warning ?? this.warning,
+      warningText: warningText ?? this.warningText,
+      success: success ?? this.success,
+      successText: successText ?? this.successText,
+      info: info ?? this.info,
+      infoText: infoText ?? this.infoText,
+      backdrop: backdrop ?? this.backdrop,
+      isDark: isDark ?? this.isDark,
     );
   }
 }

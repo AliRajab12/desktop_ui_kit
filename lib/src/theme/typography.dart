@@ -1,21 +1,55 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+/// Platform-adaptive text styles for desktop applications.
+///
+/// Uses native system fonts for each platform:
+/// - Windows: Segoe UI
+/// - macOS: SF Pro
+/// - Linux: Cantarell
+///
+/// Use [platformAdaptive] to create text styles with the correct fonts.
 class DesktopTextStyle {
+  /// Large heading style (32px).
   final TextStyle heading1;
+
+  /// Medium heading style (24px).
   final TextStyle heading2;
+
+  /// Section heading style (20px).
   final TextStyle heading3;
+
+  /// Subsection heading style (18px).
   final TextStyle heading4;
+
+  /// Title heading style (16px).
   final TextStyle heading5;
+
+  /// Small heading style (14px).
   final TextStyle heading6;
+
+  /// Large body text style (16px).
   final TextStyle bodyLarge;
+
+  /// Default body text style (14px).
   final TextStyle body;
+
+  /// Small body text style (12px).
   final TextStyle bodySmall;
+
+  /// Label/button text style (13px).
   final TextStyle label;
+
+  /// Caption/metadata text style (11px).
   final TextStyle caption;
+
+  /// Overline/eyebrow text style (10px).
   final TextStyle overline;
+
+  /// Monospace code text style.
   final TextStyle code;
 
+  /// Creates a text style collection.
   const DesktopTextStyle({
     required this.heading1,
     required this.heading2,
@@ -56,6 +90,9 @@ class DesktopTextStyle {
     return ['Roboto', 'sans-serif'];
   }
 
+  /// Creates platform-adaptive text styles.
+  ///
+  /// Returns text styles using native system fonts for the current platform.
   static DesktopTextStyle platformAdaptive({required ColorScheme colorScheme}) {
     final family = _familyForPlatform();
     return DesktopTextStyle(

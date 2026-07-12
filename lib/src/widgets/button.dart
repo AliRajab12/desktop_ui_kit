@@ -3,21 +3,56 @@ import '../theme/app.dart';
 import '../theme/colors.dart';
 import '../theme/tokens.dart';
 
+/// Defines the visual variant of a [DesktopButton].
+///
+/// Controls the button's background color, text color, and border styling.
 enum DesktopButtonVariant {
+  /// Primary action button with accent background.
   primary,
+
+  /// Secondary button with surface background and border.
   secondary,
+
+  /// Ghost button with transparent background.
   ghost,
+
+  /// Danger button for destructive actions with danger styling.
   danger,
 }
 
+/// A native-styled button for desktop applications.
+///
+/// Supports multiple variants, icons, loading states, and full-width mode.
+/// Uses platform-adaptive styling that matches native OS conventions.
+///
+/// Example:
+/// ```dart
+/// DesktopButton(
+///   label: 'Save',
+///   icon: Icons.save,
+///   onPressed: () => save(),
+/// )
+/// ```
 class DesktopButton extends StatefulWidget {
+  /// The button label text.
   final String label;
+
+  /// Optional icon displayed before the label.
   final IconData? icon;
+
+  /// Callback when the button is pressed. Set to null to disable.
   final VoidCallback? onPressed;
+
+  /// The visual variant of the button.
   final DesktopButtonVariant variant;
+
+  /// Whether to show a loading indicator instead of the label.
   final bool loading;
+
+  /// Whether the button should expand to fill available width.
   final bool expanded;
 
+  /// Creates a desktop-styled button.
   const DesktopButton({
     super.key,
     required this.label,

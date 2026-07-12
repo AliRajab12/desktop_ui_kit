@@ -1,3 +1,9 @@
+/// A platform-adaptive desktop widget library for Flutter.
+///
+/// Provides native OS conventions, keyboard-first navigation, full accessibility,
+/// and design tokens for Windows (Fluent), macOS (HIG), and Linux (GNOME/GTK).
+library;
+
 export 'src/theme/app.dart';
 export 'src/theme/colors.dart';
 export 'src/theme/desktop_theme.dart';
@@ -8,9 +14,22 @@ export 'src/utils/keyboard.dart';
 export 'src/utils/platform.dart';
 
 export 'src/widgets/button.dart';
+export 'src/widgets/checkbox.dart';
 export 'src/widgets/command_palette.dart';
 export 'src/widgets/data_table.dart';
 export 'src/widgets/dialog.dart';
+export 'src/widgets/dropdown.dart';
+export 'src/widgets/form_control.dart';
+export 'src/widgets/input_decorator.dart';
 export 'src/widgets/menu_bar.dart';
+export 'src/widgets/radio.dart';
 export 'src/widgets/split_panel.dart';
+export 'src/widgets/switch.dart';
+export 'src/widgets/text_field.dart';
 export 'src/widgets/tree_view.dart';
+
+export 'src/layout/tab_bar.dart';
+export 'src/layout/tab_view.dart';
+export 'src/layout/toolbar.dart';
+export 'src/layout/dock_panel.dart';
+export 'src/layout/panel_group.dart';
