@@ -5,13 +5,24 @@ import '../theme/colors.dart';
 import '../theme/tokens.dart';
 import 'tab_item.dart';
 
+/// A tab definition for [DesktopTabBar].
 class DesktopTab {
+  /// Unique identifier for this tab.
   final String id;
+
+  /// Display label for the tab.
   final String label;
+
+  /// Optional icon displayed before the label.
   final IconData? icon;
+
+  /// Whether this tab can be closed. Defaults to true.
   final bool closable;
+
+  /// Optional tooltip for the tab.
   final String? tooltip;
 
+  /// Creates a tab definition.
   const DesktopTab({
     required this.id,
     required this.label,
@@ -21,12 +32,36 @@ class DesktopTab {
   });
 }
 
+/// Callback invoked when a tab is selected.
 typedef DesktopTabSelectedCallback = void Function(String tabId);
+
+/// Callback invoked when a tab close is requested.
 typedef DesktopTabCloseCallback = void Function(String tabId);
+
+/// Callback invoked when tabs are reordered via drag.
 typedef DesktopTabReorderCallback = void Function(int oldIndex, int newIndex);
 
+/// A scrollable tab bar with keyboard navigation and drag reorder.
+///
+/// Displays a horizontal list of [DesktopTab] items with selection,
+/// close, and reorder support. Navigates with arrow keys and Ctrl+W.
+///
+/// Example:
+/// ```dart
+/// DesktopTabBar(
+///   tabs: [
+///     DesktopTab(id: '1', label: 'Editor'),
+///     DesktopTab(id: '2', label: 'Preview'),
+///   ],
+///   selectedId: _selectedTab,
+///   onSelect: (id) => setState(() => _selectedTab = id),
+/// )
+/// ```
 class DesktopTabBar extends StatefulWidget {
+  /// The tabs to display.
   final List<DesktopTab> tabs;
+
+  /// The ID of the currently selected tab.
   final String? selectedId;
   final DesktopTabSelectedCallback? onSelect;
   final DesktopTabCloseCallback? onClose;

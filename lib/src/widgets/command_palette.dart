@@ -1,6 +1,5 @@
+import 'package:desktop_ui_kit/desktop_ui_kit.dart';
 import 'package:flutter/material.dart';
-import '../theme/app.dart';
-import '../theme/tokens.dart';
 
 /// An entry in the [DesktopCommandPalette].
 ///
@@ -70,21 +69,16 @@ class _DesktopCommandPaletteState extends State<DesktopCommandPalette> {
   final _controller = TextEditingController();
   final _focusNode = FocusNode();
   int _highlightIndex = -1;
-
-  List<CommandPaletteEntry> get _filtered {
-    final q = _controller.text.toLowerCase();
-    if (q.isEmpty) return widget.entries;
-    return widget.entries.where((e) {
-      return e.title.toLowerCase().contains(q) ||
-          (e.subtitle?.toLowerCase().contains(q) ?? false);
-    }).toList();
-  }
+  String _query = '';
 
   @override
   void initState() {
     super.initState();
     _focusNode.requestFocus();
-    _controller.addListener(() => setState(() => _highlightIndex = -1));
+    _controller.addListener(() => setState(() {
+      _query = _controller.text;
+      _highlightIndex = -1;
+    }));
   }
 
   @override
@@ -94,25 +88,33 @@ class _DesktopCommandPaletteState extends State<DesktopCommandPalette> {
     super.dispose();
   }
 
+  List<CommandPaletteEntry> get _filtered {
+    if (_query.isEmpty) return widget.entries;
+    final q = _query.toLowerCase();
+    return widget.entries.where((e) {
+      return e.title.toLowerCase().contains(q) ||
+          (e.subtitle?.toLowerCase().contains(q) ?? false);
+    }).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final theme = DesktopTheme.of(context);
-    final colors = theme.colors;
-    final typography = theme.typography;
+    final colors = DesktopTheme.of(context).colors;
+    final typography = DesktopTheme.of(context).typography;
     final results = _filtered;
 
     return Align(
       alignment: Alignment.topCenter,
       child: Padding(
-        padding: const EdgeInsets.only(top: 80),
+        padding: const EdgeInsets.only(top: DesktopTokens.spaceXxxxl),
         child: Material(
           elevation: 12,
           borderRadius: BorderRadius.circular(DesktopTokens.radiusXl),
           color: colors.surfaceContainer,
           surfaceTintColor: Colors.transparent,
           child: Container(
-            width: 520,
-            constraints: const BoxConstraints(maxHeight: 400),
+            width: DesktopTokens.commandPaletteWidth,
+            constraints: BoxConstraints(maxHeight: DesktopTokens.commandPaletteMaxHeight),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(DesktopTokens.radiusXl),
               border: Border.all(color: colors.border),
@@ -136,7 +138,6 @@ class _DesktopCommandPaletteState extends State<DesktopCommandPalette> {
                       filled: false,
                       contentPadding: EdgeInsets.zero,
                     ),
-                    onChanged: (_) => setState(() {}),
                     onSubmitted: (_) {
                       if (results.isNotEmpty && _highlightIndex >= 0) {
                         final idx = _highlightIndex.clamp(0, results.length - 1);
@@ -153,64 +154,60 @@ class _DesktopCommandPaletteState extends State<DesktopCommandPalette> {
                   child: results.isEmpty
                       ? Padding(
                           padding: const EdgeInsets.all(DesktopTokens.spaceXxl),
-                          child: Text(
-                            'No results found',
-                            style: typography.bodySmall,
-                          ),
+                          child: Text('No results found', style: typography.bodySmall),
                         )
-                      : ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: results.length,
-                          itemBuilder: (context, i) {
-                            final entry = results[i];
-                            final highlighted = i == _highlightIndex;
-                            return InkWell(
-                              hoverColor: colors.surfaceHover,
-                              onTap: () {
-                                Navigator.of(context).pop();
-                                entry.action();
-                              },
-                              onHover: (v) {
-                                if (v) setState(() => _highlightIndex = i);
-                              },
-                              child: Container(
-                                height: 40,
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: DesktopTokens.spaceMd,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: highlighted ? colors.accent.withAlpha(25) : null,
-                                ),
-                                child: Row(
-                                  children: [
-                                    if (entry.icon != null) ...[
-                                      Icon(
-                                        entry.icon,
-                                        size: DesktopTokens.iconSm,
-                                        color: colors.textSecondary,
-                                      ),
-                                      const SizedBox(width: DesktopTokens.spaceSm),
-                                    ],
-                                    Expanded(
-                                      child: Text(entry.title, style: typography.bodySmall),
-                                    ),
-                                    if (entry.subtitle != null)
-                                      Text(
-                                        entry.subtitle!,
-                                        style: typography.caption,
-                                      ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                        ),
+                      : _CommandList(results: results, highlightIndex: _highlightIndex, colors: colors, typography: typography),
                 ),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class _CommandList extends StatelessWidget {
+  final List<CommandPaletteEntry> results;
+  final int highlightIndex;
+  final DesktopColorScheme colors;
+  final DesktopTextStyle typography;
+
+  const _CommandList({required this.results, required this.highlightIndex, required this.colors, required this.typography});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: results.length,
+      itemBuilder: (context, i) {
+        final entry = results[i];
+        final highlighted = i == highlightIndex;
+        return InkWell(
+          hoverColor: colors.surfaceHover,
+          onTap: () {
+            Navigator.of(context).pop();
+            entry.action();
+          },
+          child: Container(
+            height: DesktopTokens.inputHeight,
+            padding: const EdgeInsets.symmetric(horizontal: DesktopTokens.spaceMd),
+            decoration: BoxDecoration(
+              color: highlighted ? colors.accent.withAlpha(25) : null,
+            ),
+            child: Row(
+              children: [
+                if (entry.icon != null) ...[
+                  Icon(entry.icon, size: DesktopTokens.iconSm, color: colors.textSecondary),
+                  const SizedBox(width: DesktopTokens.spaceSm),
+                ],
+                Expanded(child: Text(entry.title, style: typography.bodySmall)),
+                if (entry.subtitle != null) Text(entry.subtitle!, style: typography.caption),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

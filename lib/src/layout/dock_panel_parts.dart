@@ -96,10 +96,17 @@ class DockToggle extends StatelessWidget {
   }
 }
 
+/// An action button displayed in a [DockTitleBar].
 class DockAction {
+  /// The icon to display.
   final IconData icon;
+
+  /// Optional tooltip text.
   final String? tooltip;
+
+  /// Callback when the action is tapped.
   final VoidCallback? onTap;
 
+  /// Creates a dock action.
   const DockAction({required this.icon, this.tooltip, this.onTap});
 }

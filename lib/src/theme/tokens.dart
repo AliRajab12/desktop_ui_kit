@@ -209,4 +209,56 @@ class DesktopTokens {
 
   /// Drag state opacity (0.20).
   static const double opacityDrag = 0.20;
+
+  // ── Control Sizes ─────────────────────────────────────
+  /// Checkbox indicator size (16px).
+  static const double checkboxSize = 16;
+
+  /// Checkbox indicator inner check icon size (12px).
+  static const double checkboxIconSize = 12;
+
+  /// Checkbox indeterminate bar width (8px).
+  static const double checkboxIndeterminateWidth = 8;
+
+  /// Checkbox indeterminate bar height (2px).
+  static const double checkboxIndeterminateHeight = 2;
+
+  /// Radio indicator size (16px).
+  static const double radioSize = 16;
+
+  /// Radio selected border width (5px).
+  static const double radioSelectedBorderWidth = 5;
+
+  /// Switch track width (36px).
+  static const double switchWidth = 36;
+
+  /// Switch track height (20px).
+  static const double switchHeight = 20;
+
+  /// Switch thumb size (16px).
+  static const double switchThumbSize = 16;
+
+  /// Switch thumb padding (2px).
+  static const double switchThumbPadding = 2;
+
+  /// Command palette default width (520px).
+  static const double commandPaletteWidth = 520;
+
+  /// Command palette max height (400px).
+  static const double commandPaletteMaxHeight = 400;
+
+  /// Command palette item height (40px).
+  static const double commandPaletteItemHeight = 40;
+
+  /// Toolbar button padding (8px).
+  static const double toolbarButtonPadding = 8;
+
+  /// Toolbar separator height (20px).
+  static const double toolbarSeparatorHeight = 20;
+
+  /// Loading indicator size (14px).
+  static const double loadingIndicatorSize = 14;
+
+  /// Loading indicator stroke width (2px).
+  static const double loadingIndicatorStrokeWidth = 2;
 }

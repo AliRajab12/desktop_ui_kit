@@ -7,11 +7,42 @@ import 'resizable_divider.dart';
 
 export 'dock_panel_parts.dart' show DockAction;
 
-enum DesktopDockPosition { left, right, top, bottom }
+/// The position where a [DesktopDockPanel] is anchored.
+enum DesktopDockPosition {
+  /// Anchored to the left edge.
+  left,
 
+  /// Anchored to the right edge.
+  right,
+
+  /// Anchored to the top edge.
+  top,
+
+  /// Anchored to the bottom edge.
+  bottom,
+}
+
+/// A collapsible, resizable side panel that docks to an edge.
+///
+/// Supports drag-to-resize, collapse to a toggle icon, and four
+/// dock positions. Pairs with [DockTitleBar] for consistent chrome.
+///
+/// Example:
+/// ```dart
+/// DesktopDockPanel(
+///   title: 'Explorer',
+///   icon: Icons.folder,
+///   child: FileTree(),
+/// )
+/// ```
 class DesktopDockPanel extends StatefulWidget {
+  /// The panel title displayed in the title bar.
   final String title;
+
+  /// Optional icon displayed next to the title.
   final IconData? icon;
+
+  /// The edge to dock to. Defaults to [DesktopDockPosition.left].
   final DesktopDockPosition position;
   final double initialSize;
   final double minSize;

@@ -79,15 +79,15 @@ class DesktopTextStyle {
     'linux': ['Cantarell', 'Noto Sans', 'Ubuntu', 'DejaVu Sans', 'sans-serif'],
   };
 
+  static const _platformFamilyMap = {
+    TargetPlatform.windows: 'windows',
+    TargetPlatform.macOS: 'macos',
+    TargetPlatform.linux: 'linux',
+  };
+
   static List<String> _familyForPlatform() {
-    if (defaultTargetPlatform == TargetPlatform.windows) {
-      return _fontFamilies['windows']!;
-    } else if (defaultTargetPlatform == TargetPlatform.macOS) {
-      return _fontFamilies['macos']!;
-    } else if (defaultTargetPlatform == TargetPlatform.linux) {
-      return _fontFamilies['linux']!;
-    }
-    return ['Roboto', 'sans-serif'];
+    final key = _platformFamilyMap[defaultTargetPlatform];
+    return key != null ? _fontFamilies[key]! : ['Roboto', 'sans-serif'];
   }
 
   /// Creates platform-adaptive text styles.

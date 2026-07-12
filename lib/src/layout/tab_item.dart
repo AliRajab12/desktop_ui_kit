@@ -97,7 +97,7 @@ class _Label extends StatelessWidget {
   Widget build(BuildContext context) {
     return Tooltip(
       message: tooltip ?? label,
-      waitDuration: const Duration(milliseconds: 500),
+      waitDuration: DesktopTokens.tooltipDelay,
       child: Text(label, style: style, overflow: TextOverflow.ellipsis, maxLines: 1),
     );
   }

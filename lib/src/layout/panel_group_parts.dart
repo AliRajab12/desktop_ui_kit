@@ -2,12 +2,21 @@ import 'package:flutter/material.dart';
 import '../theme/colors.dart';
 import '../theme/tokens.dart';
 
+/// Defines a panel within a [DesktopPanelGroup].
 class PanelDefinition {
+  /// Unique identifier for this panel.
   final String id;
+
+  /// Display title shown in the tab bar and title bar.
   final String title;
+
+  /// Icon shown in collapsed state and tab bar.
   final IconData icon;
+
+  /// The child widget to display as panel content.
   final Widget child;
 
+  /// Creates a panel definition.
   const PanelDefinition({required this.id, required this.title, required this.icon, required this.child});
 }
 

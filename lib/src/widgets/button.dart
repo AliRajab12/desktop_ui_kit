@@ -33,7 +33,7 @@ enum DesktopButtonVariant {
 ///   onPressed: () => save(),
 /// )
 /// ```
-class DesktopButton extends StatefulWidget {
+class DesktopButton extends StatelessWidget {
   /// The button label text.
   final String label;
 
@@ -64,16 +64,10 @@ class DesktopButton extends StatefulWidget {
   });
 
   @override
-  State<DesktopButton> createState() => _DesktopButtonState();
-}
-
-class _DesktopButtonState extends State<DesktopButton> {
-  @override
   Widget build(BuildContext context) {
-    final theme = DesktopTheme.of(context);
-    final colors = theme.colors;
-    final typography = theme.typography;
-    final disabled = widget.onPressed == null || widget.loading;
+    final colors = DesktopTheme.of(context).colors;
+    final typography = DesktopTheme.of(context).typography;
+    final disabled = onPressed == null || loading;
 
     final bgColor = _resolveBg(colors, disabled);
     final textColor = _resolveText(colors, disabled);
@@ -91,7 +85,7 @@ class _DesktopButtonState extends State<DesktopButton> {
           splashColor: colors.surfacePressed.withAlpha(
             disabled ? 0 : (DesktopTokens.opacityPressed * 255).round(),
           ),
-          onTap: disabled ? null : widget.onPressed,
+          onTap: disabled ? null : onPressed,
           child: AnimatedContainer(
             duration: DesktopTokens.durationFast,
             padding: const EdgeInsets.symmetric(horizontal: DesktopTokens.spaceLg),
@@ -101,23 +95,20 @@ class _DesktopButtonState extends State<DesktopButton> {
               border: Border.all(color: borderColor),
             ),
             child: Row(
-              mainAxisSize: widget.expanded ? MainAxisSize.max : MainAxisSize.min,
+              mainAxisSize: expanded ? MainAxisSize.max : MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                if (widget.loading)
+                if (loading)
                   SizedBox(
-                    width: 14,
-                    height: 14,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                      color: textColor,
-                    ),
+                    width: DesktopTokens.actionButtonIconSize,
+                    height: DesktopTokens.actionButtonIconSize,
+                    child: CircularProgressIndicator(strokeWidth: DesktopTokens.borderThick, color: textColor),
                   )
-                else if (widget.icon != null) ...[
-                  Icon(widget.icon, size: DesktopTokens.iconSm, color: textColor),
+                else if (icon != null) ...[
+                  Icon(icon, size: DesktopTokens.iconSm, color: textColor),
                   const SizedBox(width: DesktopTokens.spaceXs),
                 ],
-                Text(widget.label, style: typography.label.copyWith(color: textColor)),
+                Text(label, style: typography.label.copyWith(color: textColor)),
               ],
             ),
           ),
@@ -128,7 +119,7 @@ class _DesktopButtonState extends State<DesktopButton> {
 
   Color _resolveBg(DesktopColorScheme c, bool disabled) {
     if (disabled) return c.surfaceHover;
-    return switch (widget.variant) {
+    return switch (variant) {
       DesktopButtonVariant.primary => c.accent,
       DesktopButtonVariant.secondary => c.surface,
       DesktopButtonVariant.ghost => Colors.transparent,
@@ -138,7 +129,7 @@ class _DesktopButtonState extends State<DesktopButton> {
 
   Color _resolveText(DesktopColorScheme c, bool disabled) {
     if (disabled) return c.textDisabled;
-    return switch (widget.variant) {
+    return switch (variant) {
       DesktopButtonVariant.primary => c.accentText,
       DesktopButtonVariant.secondary => c.textPrimary,
       DesktopButtonVariant.ghost => c.textPrimary,
@@ -148,7 +139,7 @@ class _DesktopButtonState extends State<DesktopButton> {
 
   Color _resolveBorder(DesktopColorScheme c, bool disabled) {
     if (disabled) return c.borderDisabled;
-    return switch (widget.variant) {
+    return switch (variant) {
       DesktopButtonVariant.primary => c.accent,
       DesktopButtonVariant.secondary => c.border,
       DesktopButtonVariant.ghost => Colors.transparent,

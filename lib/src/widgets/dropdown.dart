@@ -110,11 +110,8 @@ class _DesktopDropdownState<T> extends State<DesktopDropdown<T>> {
 
   DropdownOption<T>? get _selected {
     if (widget.value == null) return null;
-    try {
-      return widget.options.firstWhere((o) => o.value == widget.value);
-    } catch (_) {
-      return null;
-    }
+    final index = widget.options.indexWhere((o) => o.value == widget.value);
+    return index == -1 ? null : widget.options[index];
   }
 
   void _showDropdown() {

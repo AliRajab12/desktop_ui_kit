@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../theme/app.dart';
 import '../theme/colors.dart';
+import '../theme/tokens.dart';
 import 'form_control.dart';
 
 /// A native-styled radio button for desktop applications.
@@ -74,14 +75,14 @@ class _RadioIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 16,
-      height: 16,
+      width: DesktopTokens.radioSize,
+      height: DesktopTokens.radioSize,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: colors.surface,
         border: Border.all(
           color: disabled ? colors.borderDisabled : selected ? colors.accent : colors.border,
-          width: selected ? 5 : 1,
+          width: selected ? DesktopTokens.radioSelectedBorderWidth : 1,
         ),
       ),
     );

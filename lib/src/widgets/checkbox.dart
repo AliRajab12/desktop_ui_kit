@@ -72,8 +72,8 @@ class _CheckboxIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 16,
-      height: 16,
+      width: DesktopTokens.checkboxSize,
+      height: DesktopTokens.checkboxSize,
       decoration: BoxDecoration(
         color: value == true || isIndeterminate ? colors.accent : colors.surface,
         borderRadius: BorderRadius.circular(DesktopTokens.radiusSm),
@@ -84,8 +84,8 @@ class _CheckboxIndicator extends StatelessWidget {
   }
 
   Widget? _buildIndicator() {
-    if (isIndeterminate) return Container(width: 8, height: 2, color: disabled ? colors.borderDisabled : colors.accentText);
-    if (value == true) return Icon(Icons.check, size: 12, color: colors.accentText);
+    if (isIndeterminate) return Container(width: DesktopTokens.checkboxIndeterminateWidth, height: DesktopTokens.checkboxIndeterminateHeight, color: disabled ? colors.borderDisabled : colors.accentText);
+    if (value == true) return Icon(Icons.check, size: DesktopTokens.checkboxIconSize, color: colors.accentText);
     return null;
   }
 }

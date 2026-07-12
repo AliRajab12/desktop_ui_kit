@@ -33,12 +33,15 @@ class DesktopApp extends StatefulWidget {
 class _DesktopAppState extends State<DesktopApp> {
   @override
   Widget build(BuildContext context) {
-    final data = DesktopThemeData.light();
+    final lightData = DesktopThemeData.light();
+    final darkData = DesktopThemeData.dark();
+    final activeData = widget.themeMode == ThemeMode.dark ? darkData : lightData;
+
     return DesktopTheme(
-      data: data,
+      data: activeData,
       child: MaterialApp(
-        theme: data.toMaterialTheme(),
-        darkTheme: DesktopThemeData.dark().toMaterialTheme(),
+        theme: lightData.toMaterialTheme(),
+        darkTheme: darkData.toMaterialTheme(),
         themeMode: widget.themeMode,
         home: widget.home,
         debugShowCheckedModeBanner: false,

@@ -9,7 +9,22 @@ import 'resizable_divider.dart';
 
 export 'panel_group_parts.dart' show PanelDefinition;
 
+/// A multi-panel container with tabbed switching and collapsible state.
+///
+/// Displays multiple [PanelDefinition] panels with a tab bar when expanded,
+/// or collapsed icon buttons when minimized. Supports drag-to-resize.
+///
+/// Example:
+/// ```dart
+/// DesktopPanelGroup(
+///   panels: [
+///     PanelDefinition(id: 'files', title: 'Files', icon: Icons.folder, child: FileTree()),
+///     PanelDefinition(id: 'search', title: 'Search', icon: Icons.search, child: SearchPanel()),
+///   ],
+/// )
+/// ```
 class DesktopPanelGroup extends StatefulWidget {
+  /// The panels available in this group.
   final List<PanelDefinition> panels;
   final DesktopDockPosition position;
   final double initialSize;

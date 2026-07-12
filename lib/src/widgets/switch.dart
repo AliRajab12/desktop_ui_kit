@@ -69,8 +69,8 @@ class _SwitchIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: DesktopTokens.durationFast,
-      width: 36,
-      height: 20,
+      width: DesktopTokens.switchWidth,
+      height: DesktopTokens.switchHeight,
       decoration: BoxDecoration(
         color: value
             ? disabled ? colors.accent.withAlpha(100) : colors.accent
@@ -81,10 +81,10 @@ class _SwitchIndicator extends StatelessWidget {
       child: Align(
         alignment: value ? Alignment.centerRight : Alignment.centerLeft,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 2),
+          padding: const EdgeInsets.symmetric(horizontal: DesktopTokens.switchThumbPadding),
           child: Container(
-            width: 16,
-            height: 16,
+            width: DesktopTokens.switchThumbSize,
+            height: DesktopTokens.switchThumbSize,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: value

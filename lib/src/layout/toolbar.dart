@@ -191,7 +191,7 @@ class _ToolbarButton extends StatelessWidget {
 
     return Tooltip(
       message: item.tooltip ?? '',
-      waitDuration: const Duration(milliseconds: 500),
+      waitDuration: DesktopTokens.tooltipDelay,
       child: MouseRegion(
         onEnter: (_) => onHoverChanged(true),
         onExit: (_) => onHoverChanged(false),
@@ -199,8 +199,8 @@ class _ToolbarButton extends StatelessWidget {
         child: GestureDetector(
           onTap: disabled ? null : item.onPressed,
           child: Container(
-            width: DesktopTokens.toolbarHeight - 8,
-            height: DesktopTokens.toolbarHeight - 8,
+            width: DesktopTokens.toolbarHeight - DesktopTokens.toolbarButtonPadding,
+            height: DesktopTokens.toolbarHeight - DesktopTokens.toolbarButtonPadding,
             margin: const EdgeInsets.symmetric(horizontal: 1),
             decoration: BoxDecoration(
               color: isHovered && !disabled
@@ -229,7 +229,7 @@ class _ToolbarSeparator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 1,
-      height: 20,
+      height: DesktopTokens.toolbarSeparatorHeight,
       margin: const EdgeInsets.symmetric(horizontal: DesktopTokens.spaceXs),
       color: colors.border,
     );

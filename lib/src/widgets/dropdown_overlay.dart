@@ -3,6 +3,7 @@ import '../theme/app.dart';
 import '../theme/tokens.dart';
 import 'dropdown.dart';
 
+/// The overlay panel for [DesktopDropdown]. Not part of the public API.
 class DropdownOverlay<T> extends StatelessWidget {
   final LayerLink layerLink;
   final double width;
