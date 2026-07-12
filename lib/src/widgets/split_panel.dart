@@ -82,8 +82,9 @@ class _DesktopSplitPanelState extends State<DesktopSplitPanel> {
     return LayoutBuilder(
       builder: (context, constraints) {
         final total = isHorizontal ? constraints.maxWidth : constraints.maxHeight;
-        final firstSize = (total * _ratio).clamp(widget.minFirstSize, total - widget.minSecondSize);
-        final secondSize = total - firstSize;
+        final available = total - widget.dividerThickness;
+        final firstSize = (available * _ratio).clamp(widget.minFirstSize, available - widget.minSecondSize);
+        final secondSize = available - firstSize;
 
         return MouseRegion(
           cursor: _dragging
@@ -94,7 +95,7 @@ class _DesktopSplitPanelState extends State<DesktopSplitPanel> {
             onPanUpdate: (details) {
               setState(() {
                 final delta = isHorizontal ? details.delta.dx : details.delta.dy;
-                _ratio = (firstSize + delta) / total;
+                _ratio = (firstSize + delta) / available;
                 _ratio = _ratio.clamp(
                   widget.minFirstSize / total,
                   1.0 - widget.minSecondSize / total,

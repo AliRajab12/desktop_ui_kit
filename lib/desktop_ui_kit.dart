@@ -33,3 +33,4 @@ export 'src/layout/tab_view.dart';
 export 'src/layout/toolbar.dart';
 export 'src/layout/dock_panel.dart';
 export 'src/layout/panel_group.dart';
+export 'src/layout/resizable_divider.dart';

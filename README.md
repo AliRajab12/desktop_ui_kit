@@ -14,11 +14,12 @@ Targets Windows (Fluent Design), macOS (Human Interface Guidelines), and Linux (
 
 ## Features
 
-- **🎨 Platform-Adaptive Theming** — Design tokens, light/dark/high-contrast, auto-detects platform fonts (Segoe UI, SF Pro, Cantarell)
-- **🧩 Desktop Widgets** — Button, DataTable, TreeView, SplitPanel, MenuBar, Dialog, CommandPalette
-- **⌨️ Keyboard-First** — Shortcuts, focus management, accessible by design
-- **🖥️ Desktop-Convenient** — Status bar, toolbars, panel layouts, window management primitives
-- **♿ Accessible** — Full Semantics tree on every widget, high-contrast mode support
+- **Platform-Adaptive Theming** — Design tokens, light/dark/high-contrast, auto-detects platform fonts (Segoe UI, SF Pro, Cantarell)
+- **Desktop Widgets** — 17 widgets across form controls, layout, and core categories
+- **Keyboard-First** — Shortcuts, focus management, accessible by design
+- **Desktop-Convenient** — Status bar, toolbars, panel layouts, window management primitives
+- **Accessible** — Full Semantics tree on every widget, high-contrast mode support
+- **Zero Dependencies** — Flutter SDK only, no third-party packages
 
 ---
 
@@ -26,7 +27,7 @@ Targets Windows (Fluent Design), macOS (Human Interface Guidelines), and Linux (
 
 ```yaml
 dependencies:
-  desktop_ui_kit: ^0.1.0
+  desktop_ui_kit: ^0.3.0
 ```
 
 ---
@@ -44,8 +45,6 @@ void main() {
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final theme = DesktopTheme.of(context);
-
     return Scaffold(
       body: Column(
         children: [
@@ -75,16 +74,37 @@ class MyHomePage extends StatelessWidget {
 
 ## Widgets
 
+### Form Controls
+
+| Widget | Description |
+|---|---|
+| `DesktopTextField` | Labels, hints, prefix/suffix icons, validation states, obscure text |
+| `DesktopDropdown` | Floating overlay, keyboard navigation, search, custom option builders |
+| `DesktopCheckbox` | Tri-state with indeterminate support, check icon |
+| `DesktopRadio` | Group selection with native styling |
+| `DesktopSwitch` | Animated on/off toggle with smooth transitions |
+
+### Layout
+
+| Widget | Description |
+|---|---|
+| `DesktopTabBar` | Scrollable tabs with close buttons, drag reorder, keyboard nav (arrows, Ctrl+W) |
+| `DesktopTabView` | Animated tab transitions, lazy loading, custom empty states |
+| `DesktopToolbar` | Horizontal action bar with buttons, separators, spacers, custom widgets |
+| `DesktopDockPanel` | Collapsible side panel with drag-to-resize and title bar actions |
+| `DesktopPanelGroup` | Multi-panel container with tabbed switching and collapsed icons |
+
+### Core
+
 | Widget | Description |
 |---|---|
 | `DesktopButton` | Primary, secondary, ghost, danger variants with loading state |
+| `DesktopDialog` | Modal dialog with title bar, content, and action bar |
 | `DesktopDataTable` | Sortable columns, selectable rows, resizable headers |
 | `DesktopTreeView` | Expandable tree with icons, selection, custom depth |
 | `DesktopSplitPanel` | Horizontal or vertical draggable splitter |
-| `DesktopMenuBar` | Native-style top menu bar with groups |
-| `DesktopDialog` | Modal dialog with title bar, content, and action bar |
+| `DesktopMenuBar` | Native-style top menu bar with groups and keyboard shortcuts |
 | `DesktopCommandPalette` | VS Code-style fuzzy-search command palette |
-| `DesktopApp` | Root widget setting up theme and platform defaults |
 
 ---
 
@@ -93,10 +113,12 @@ class MyHomePage extends StatelessWidget {
 ### Design Tokens
 
 ```dart
-DesktopTokens.spaceMd   // 12
-DesktopTokens.radiusLg  // 6
-DesktopTokens.iconSm    // 16
-DesktopTokens.elevation(2)
+DesktopTokens.spaceMd        // 12px
+DesktopTokens.radiusLg       // 6px
+DesktopTokens.iconSm         // 16px
+DesktopTokens.inputHeight    // 32px
+DesktopTokens.tooltipDelay   // 500ms
+DesktopTokens.elevation(2)   // Shadow list
 ```
 
 ### Color Schemes
@@ -104,6 +126,9 @@ DesktopTokens.elevation(2)
 ```dart
 DesktopColorScheme.light
 DesktopColorScheme.dark
+
+// Custom:
+final custom = DesktopColorScheme.light.copyWith(accent: Colors.red);
 ```
 
 ### Typography
@@ -121,12 +146,12 @@ typography.code      // Monospace stack
 
 | Platform | Status |
 |---|---|
-| Windows | ✅ |
-| macOS | ✅ |
-| Linux | ✅ |
-| Android | ❌ (mobile not in scope) |
-| iOS | ❌ (mobile not in scope) |
-| Web | ⚠️ (limited) |
+| Windows | Supported |
+| macOS | Supported |
+| Linux | Supported |
+| Android | Not in scope |
+| iOS | Not in scope |
+| Web | Limited |
 
 ---
 
