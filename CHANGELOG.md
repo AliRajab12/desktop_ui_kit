@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.1
+
+- Fixed DesktopSplitPanel divider overflow bug (divider thickness now subtracted from available space)
+- Exported DesktopResizableDivider from barrel
+- Added tests for all layout widgets, CommandPalette, SplitPanel, MenuBar, InputDecorator, FormControl
+- 74 tests passing
+
 ## 0.3.0 — Layout Widgets
 
 - Added DesktopTabBar with scrollable tabs, close buttons, drag reorder, keyboard navigation
