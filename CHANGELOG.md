@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.4.0 — Theming Overrides & Accessibility
+
+- Added `copyWith()` to `DesktopThemeData` for selective field overrides
+- Added `DesktopThemeOverride` InheritedWidget for overriding colors in any subtree
+- `DesktopApp` now accepts `lightColors`/`darkColors` overrides
+- Added `DesktopSemantics` wrapper widget with all properties (button, toggled, checked, header, link, selected, expanded, liveRegion, value)
+- Added `DesktopFocusIndicator` for visible focus rings
+- Added `DesktopReduceMotion` InheritedWidget for motion preference (auto-integrated into `DesktopApp`)
+- All 17 existing widgets now include `Semantics` wrappers for screen reader support
+- 33 new tests, 139 total passing
+
 ## 0.3.1
 
 - Fixed DesktopSplitPanel divider overflow bug (divider thickness now subtracted from available space)
