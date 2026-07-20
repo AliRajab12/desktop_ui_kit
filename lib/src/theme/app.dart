@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../accessibility/reduce_motion.dart';
+import 'colors.dart';
 import 'desktop_theme.dart';
 
 /// A complete desktop-styled application widget.
@@ -19,11 +21,19 @@ class DesktopApp extends StatefulWidget {
   /// The theme mode (light, dark, or system).
   final ThemeMode themeMode;
 
+  /// Optional color scheme override applied to both light and dark themes.
+  final DesktopColorScheme? lightColors;
+
+  /// Optional dark color scheme override.
+  final DesktopColorScheme? darkColors;
+
   /// Creates a desktop app.
   const DesktopApp({
     super.key,
     required this.home,
     this.themeMode = ThemeMode.system,
+    this.lightColors,
+    this.darkColors,
   });
 
   @override
@@ -35,17 +45,33 @@ class _DesktopAppState extends State<DesktopApp> {
   Widget build(BuildContext context) {
     final lightData = DesktopThemeData.light();
     final darkData = DesktopThemeData.dark();
-    final activeData = widget.themeMode == ThemeMode.dark ? darkData : lightData;
 
-    return DesktopTheme(
-      data: activeData,
-      child: MaterialApp(
-        theme: lightData.toMaterialTheme(),
-        darkTheme: darkData.toMaterialTheme(),
-        themeMode: widget.themeMode,
-        home: widget.home,
-        debugShowCheckedModeBanner: false,
-      ),
+    final effectiveLight = widget.lightColors != null
+        ? lightData.copyWith(colors: widget.lightColors)
+        : lightData;
+    final effectiveDark = widget.darkColors != null
+        ? darkData.copyWith(colors: widget.darkColors)
+        : darkData;
+
+    final activeData = widget.themeMode == ThemeMode.dark ? effectiveDark : effectiveLight;
+
+    return Builder(
+      builder: (context) {
+        final reduceMotion = MediaQuery.disableAnimationsOf(context);
+        return DesktopReduceMotion(
+          reduceMotion: reduceMotion,
+          child: DesktopTheme(
+            data: activeData,
+            child: MaterialApp(
+              theme: effectiveLight.toMaterialTheme(),
+              darkTheme: effectiveDark.toMaterialTheme(),
+              themeMode: widget.themeMode,
+              home: widget.home,
+              debugShowCheckedModeBanner: false,
+            ),
+          ),
+        );
+      },
     );
   }
 }

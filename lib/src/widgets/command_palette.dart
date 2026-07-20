@@ -103,62 +103,65 @@ class _DesktopCommandPaletteState extends State<DesktopCommandPalette> {
     final typography = DesktopTheme.of(context).typography;
     final results = _filtered;
 
-    return Align(
-      alignment: Alignment.topCenter,
-      child: Padding(
-        padding: const EdgeInsets.only(top: DesktopTokens.spaceXxxxl),
-        child: Material(
-          elevation: 12,
-          borderRadius: BorderRadius.circular(DesktopTokens.radiusXl),
-          color: colors.surfaceContainer,
-          surfaceTintColor: Colors.transparent,
-          child: Container(
-            width: DesktopTokens.commandPaletteWidth,
-            constraints: BoxConstraints(maxHeight: DesktopTokens.commandPaletteMaxHeight),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(DesktopTokens.radiusXl),
-              border: Border.all(color: colors.border),
-            ),
-            clipBehavior: Clip.antiAlias,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(DesktopTokens.spaceMd),
-                  decoration: BoxDecoration(
-                    border: Border(bottom: BorderSide(color: colors.border)),
-                  ),
-                  child: TextField(
-                    controller: _controller,
-                    focusNode: _focusNode,
-                    decoration: InputDecoration(
-                      hintText: 'Search commands...',
-                      prefixIcon: Icon(Icons.search, size: DesktopTokens.iconMd),
-                      border: InputBorder.none,
-                      filled: false,
-                      contentPadding: EdgeInsets.zero,
+    return Semantics(
+      label: 'Command palette',
+      child: Align(
+        alignment: Alignment.topCenter,
+        child: Padding(
+          padding: const EdgeInsets.only(top: DesktopTokens.spaceXxxxl),
+          child: Material(
+            elevation: 12,
+            borderRadius: BorderRadius.circular(DesktopTokens.radiusXl),
+            color: colors.surfaceContainer,
+            surfaceTintColor: Colors.transparent,
+            child: Container(
+              width: DesktopTokens.commandPaletteWidth,
+              constraints: BoxConstraints(maxHeight: DesktopTokens.commandPaletteMaxHeight),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(DesktopTokens.radiusXl),
+                border: Border.all(color: colors.border),
+              ),
+              clipBehavior: Clip.antiAlias,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(DesktopTokens.spaceMd),
+                    decoration: BoxDecoration(
+                      border: Border(bottom: BorderSide(color: colors.border)),
                     ),
-                    onSubmitted: (_) {
-                      if (results.isNotEmpty && _highlightIndex >= 0) {
-                        final idx = _highlightIndex.clamp(0, results.length - 1);
-                        Navigator.of(context).pop();
-                        results[idx].action();
-                      } else if (results.isNotEmpty) {
-                        Navigator.of(context).pop();
-                        results[0].action();
-                      }
-                    },
+                    child: TextField(
+                      controller: _controller,
+                      focusNode: _focusNode,
+                      decoration: InputDecoration(
+                        hintText: 'Search commands...',
+                        prefixIcon: Icon(Icons.search, size: DesktopTokens.iconMd),
+                        border: InputBorder.none,
+                        filled: false,
+                        contentPadding: EdgeInsets.zero,
+                      ),
+                      onSubmitted: (_) {
+                        if (results.isNotEmpty && _highlightIndex >= 0) {
+                          final idx = _highlightIndex.clamp(0, results.length - 1);
+                          Navigator.of(context).pop();
+                          results[idx].action();
+                        } else if (results.isNotEmpty) {
+                          Navigator.of(context).pop();
+                          results[0].action();
+                        }
+                      },
+                    ),
                   ),
-                ),
-                Flexible(
-                  child: results.isEmpty
-                      ? Padding(
-                          padding: const EdgeInsets.all(DesktopTokens.spaceXxl),
-                          child: Text('No results found', style: typography.bodySmall),
-                        )
-                      : _CommandList(results: results, highlightIndex: _highlightIndex, colors: colors, typography: typography),
-                ),
-              ],
+                  Flexible(
+                    child: results.isEmpty
+                        ? Padding(
+                            padding: const EdgeInsets.all(DesktopTokens.spaceXxl),
+                            child: Text('No results found', style: typography.bodySmall),
+                          )
+                        : _CommandList(results: results, highlightIndex: _highlightIndex, colors: colors, typography: typography),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

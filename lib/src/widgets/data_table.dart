@@ -104,13 +104,15 @@ class _DesktopDataTableState extends State<DesktopDataTable> {
     final typography = theme.typography;
     final rows = _sortedRows;
 
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: colors.border),
-        borderRadius: BorderRadius.circular(DesktopTokens.radiusMd),
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: Column(
+    return Semantics(
+      label: 'Data table with ${widget.columns.length} columns and ${widget.rows.length} rows',
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: colors.border),
+          borderRadius: BorderRadius.circular(DesktopTokens.radiusMd),
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _HeaderRow(
@@ -171,6 +173,7 @@ class _DesktopDataTableState extends State<DesktopDataTable> {
             ),
           ),
         ],
+      ),
       ),
     );
   }

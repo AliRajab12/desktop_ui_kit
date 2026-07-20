@@ -92,7 +92,10 @@ class _DesktopDockPanelState extends State<DesktopDockPanel> {
   @override
   Widget build(BuildContext context) {
     final colors = DesktopTheme.of(context).colors;
-    return _collapsed ? _buildCollapsed(colors) : _buildExpanded(colors);
+    return Semantics(
+      label: '${widget.title} panel',
+      child: _collapsed ? _buildCollapsed(colors) : _buildExpanded(colors),
+    );
   }
 
   Widget _buildCollapsed(DesktopColorScheme colors) {

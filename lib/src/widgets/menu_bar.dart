@@ -95,23 +95,26 @@ class _DesktopMenuBarState extends State<DesktopMenuBar> {
     final theme = DesktopTheme.of(context);
     final colors = theme.colors;
 
-    return Container(
-      height: DesktopTokens.menuBarHeight,
-      decoration: BoxDecoration(
-        color: colors.surfaceContainer,
-        border: Border(bottom: BorderSide(color: colors.border)),
-      ),
-      child: Row(
-        children: [
-          for (int i = 0; i < widget.groups.length; i++) ...[
-            _MenuGroupButton(
-              label: widget.groups[i].label,
-              open: _openIndex == i,
-              onHover: () => setState(() => _openIndex = i),
-              onTap: () => setState(() => _openIndex = _openIndex == i ? null : i),
-            ),
+    return Semantics(
+      label: 'Menu bar',
+      child: Container(
+        height: DesktopTokens.menuBarHeight,
+        decoration: BoxDecoration(
+          color: colors.surfaceContainer,
+          border: Border(bottom: BorderSide(color: colors.border)),
+        ),
+        child: Row(
+          children: [
+            for (int i = 0; i < widget.groups.length; i++) ...[
+              _MenuGroupButton(
+                label: widget.groups[i].label,
+                open: _openIndex == i,
+                onHover: () => setState(() => _openIndex = i),
+                onTap: () => setState(() => _openIndex = _openIndex == i ? null : i),
+              ),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }

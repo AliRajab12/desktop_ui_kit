@@ -103,11 +103,14 @@ class _DesktopTreeViewState extends State<DesktopTreeView> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: EdgeInsets.zero,
-      children: [
-        for (final root in widget.roots) _buildNode(context, root, 0),
-      ],
+    return Semantics(
+      label: 'Tree view',
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          for (final root in widget.roots) _buildNode(context, root, 0),
+        ],
+      ),
     );
   }
 

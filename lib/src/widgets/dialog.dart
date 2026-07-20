@@ -65,65 +65,68 @@ class DesktopDialog extends StatelessWidget {
     final colors = theme.colors;
     final typography = theme.typography;
 
-    return Center(
-      child: Container(
-        width: width,
-        height: height,
-        decoration: BoxDecoration(
-          color: colors.surfaceContainer,
-          borderRadius: BorderRadius.circular(DesktopTokens.radiusXl),
-          border: Border.all(color: colors.border),
-        ),
-        clipBehavior: Clip.antiAlias,
-        child: Material(
-          color: Colors.transparent,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(DesktopTokens.spaceLg),
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(color: colors.border),
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        title,
-                        style: typography.heading6,
-                      ),
-                    ),
-                    const DesktopCloseButton(),
-                  ],
-                ),
-              ),
-              Flexible(
-                child: Padding(
+    return Semantics(
+      label: title,
+      child: Center(
+        child: Container(
+          width: width,
+          height: height,
+          decoration: BoxDecoration(
+            color: colors.surfaceContainer,
+            borderRadius: BorderRadius.circular(DesktopTokens.radiusXl),
+            border: Border.all(color: colors.border),
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: Material(
+            color: Colors.transparent,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Container(
                   padding: const EdgeInsets.all(DesktopTokens.spaceLg),
-                  child: content,
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(DesktopTokens.spaceMd),
-                decoration: BoxDecoration(
-                  border: Border(
-                    top: BorderSide(color: colors.border),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(color: colors.border),
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          title,
+                          style: typography.heading6,
+                        ),
+                      ),
+                      const DesktopCloseButton(),
+                    ],
                   ),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    for (int i = 0; i < actions.length; i++) ...[
-                      if (i > 0) const SizedBox(width: DesktopTokens.spaceSm),
-                      actions[i],
-                    ],
-                  ],
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.all(DesktopTokens.spaceLg),
+                    child: content,
+                  ),
                 ),
-              ),
-            ],
+                Container(
+                  padding: const EdgeInsets.all(DesktopTokens.spaceMd),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(color: colors.border),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      for (int i = 0; i < actions.length; i++) ...[
+                        if (i > 0) const SizedBox(width: DesktopTokens.spaceSm),
+                        actions[i],
+                      ],
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -143,18 +146,22 @@ class DesktopCloseButton extends StatelessWidget {
     final theme = DesktopTheme.of(context);
     final colors = theme.colors;
 
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(DesktopTokens.radiusSm),
-        hoverColor: colors.surfaceHover,
-        onTap: () => Navigator.of(context).maybePop(),
-        child: Padding(
-          padding: const EdgeInsets.all(DesktopTokens.spaceXs),
-          child: Icon(
-            Icons.close,
-            size: DesktopTokens.iconMd,
-            color: colors.textSecondary,
+    return Semantics(
+      button: true,
+      label: 'Close',
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(DesktopTokens.radiusSm),
+          hoverColor: colors.surfaceHover,
+          onTap: () => Navigator.of(context).maybePop(),
+          child: Padding(
+            padding: const EdgeInsets.all(DesktopTokens.spaceXs),
+            child: Icon(
+              Icons.close,
+              size: DesktopTokens.iconMd,
+              color: colors.textSecondary,
+            ),
           ),
         ),
       ),

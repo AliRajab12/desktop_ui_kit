@@ -7,11 +7,16 @@ library;
 export 'src/theme/app.dart';
 export 'src/theme/colors.dart';
 export 'src/theme/desktop_theme.dart';
+export 'src/theme/theme_override.dart';
 export 'src/theme/tokens.dart';
 export 'src/theme/typography.dart';
 
 export 'src/utils/keyboard.dart';
 export 'src/utils/platform.dart';
+
+export 'src/accessibility/semantics.dart';
+export 'src/accessibility/focus_indicator.dart';
+export 'src/accessibility/reduce_motion.dart';
 
 export 'src/widgets/button.dart';
 export 'src/widgets/checkbox.dart';

@@ -125,7 +125,12 @@ class _DesktopTextFieldState extends State<DesktopTextField> {
       colors: colors, hasError: hasError, focused: _focused, disabled: widget.disabled,
     );
 
-    return Column(
+    return Semantics(
+      textField: true,
+      enabled: !widget.disabled,
+      label: widget.label,
+      excludeSemantics: true,
+      child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -171,6 +176,7 @@ class _DesktopTextFieldState extends State<DesktopTextField> {
         else
           DesktopInputDecorator.buildHelperText(widget.helper, hasError, typography, colors),
       ].whereType<Widget>().toList(),
+      ),
     );
   }
 }

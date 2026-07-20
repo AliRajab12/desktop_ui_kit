@@ -40,6 +40,19 @@ class DesktopThemeData {
         isDark: true,
       );
 
+  /// Creates a copy of this theme data with optional overrides.
+  DesktopThemeData copyWith({
+    DesktopColorScheme? colors,
+    DesktopTextStyle? typography,
+    bool? isDark,
+  }) {
+    return DesktopThemeData(
+      colors: colors ?? this.colors,
+      typography: typography ?? this.typography,
+      isDark: isDark ?? this.isDark,
+    );
+  }
+
   /// Converts to a Material [ThemeData] for use with [MaterialApp].
   ThemeData toMaterialTheme() {
     final base = isDark ? ThemeData.dark() : ThemeData.light();

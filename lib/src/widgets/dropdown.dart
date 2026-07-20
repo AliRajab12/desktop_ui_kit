@@ -153,50 +153,56 @@ class _DesktopDropdownState<T> extends State<DesktopDropdown<T>> {
       colors: colors, hasError: hasError, focused: _focused || _open, disabled: widget.disabled,
     );
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        DesktopInputDecorator.buildLabel(widget.label, widget.disabled, colors, typography),
-        CompositedTransformTarget(
-          link: _layerLink,
-          child: GestureDetector(
-            onTap: _showDropdown,
-            child: Focus(
-              focusNode: _focusNode,
-              child: ConstrainedBox(
-                constraints: BoxConstraints(minWidth: widget.minWidth ?? 0),
-                child: Container(
-                  height: DesktopTokens.inputHeight,
-                  padding: const EdgeInsets.symmetric(horizontal: DesktopTokens.spaceMd),
-                  decoration: BoxDecoration(
-                    color: widget.disabled ? colors.surfaceHover : colors.surface,
-                    borderRadius: BorderRadius.circular(DesktopTokens.radiusMd),
-                    border: Border.all(color: borderColor, width: (_focused || _open) && !hasError ? 2 : 1),
-                  ),
-                  child: Row(
-                    children: [
-                      if (_selected?.icon != null) ...[
-                        Icon(_selected!.icon, size: DesktopTokens.iconMd, color: colors.textSecondary),
-                        const SizedBox(width: DesktopTokens.spaceSm),
-                      ],
-                      Expanded(
-                        child: Text(
-                          _selected?.label ?? widget.hint ?? '',
-                          style: typography.body.copyWith(color: _selected != null ? colors.textPrimary : colors.textTertiary),
-                          overflow: TextOverflow.ellipsis,
+    return Semantics(
+      button: true,
+      expanded: _open,
+      enabled: !widget.disabled,
+      label: widget.label ?? 'Dropdown',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          DesktopInputDecorator.buildLabel(widget.label, widget.disabled, colors, typography),
+          CompositedTransformTarget(
+            link: _layerLink,
+            child: GestureDetector(
+              onTap: _showDropdown,
+              child: Focus(
+                focusNode: _focusNode,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(minWidth: widget.minWidth ?? 0),
+                  child: Container(
+                    height: DesktopTokens.inputHeight,
+                    padding: const EdgeInsets.symmetric(horizontal: DesktopTokens.spaceMd),
+                    decoration: BoxDecoration(
+                      color: widget.disabled ? colors.surfaceHover : colors.surface,
+                      borderRadius: BorderRadius.circular(DesktopTokens.radiusMd),
+                      border: Border.all(color: borderColor, width: (_focused || _open) && !hasError ? 2 : 1),
+                    ),
+                    child: Row(
+                      children: [
+                        if (_selected?.icon != null) ...[
+                          Icon(_selected!.icon, size: DesktopTokens.iconMd, color: colors.textSecondary),
+                          const SizedBox(width: DesktopTokens.spaceSm),
+                        ],
+                        Expanded(
+                          child: Text(
+                            _selected?.label ?? widget.hint ?? '',
+                            style: typography.body.copyWith(color: _selected != null ? colors.textPrimary : colors.textTertiary),
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
-                      ),
-                      Icon(_open ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down, size: DesktopTokens.iconMd, color: colors.textSecondary),
-                    ],
+                        Icon(_open ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down, size: DesktopTokens.iconMd, color: colors.textSecondary),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
           ),
-        ),
-        DesktopInputDecorator.buildErrorText(widget.error, typography, colors),
-      ].whereType<Widget>().toList(),
+          DesktopInputDecorator.buildErrorText(widget.error, typography, colors),
+        ].whereType<Widget>().toList(),
+      ),
     );
   }
 }

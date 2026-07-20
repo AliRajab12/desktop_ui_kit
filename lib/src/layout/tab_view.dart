@@ -66,16 +66,16 @@ class _DesktopTabViewState extends State<DesktopTabView> {
     final colors = theme.colors;
 
     if (widget.selectedId == null || !widget.tabs.containsKey(widget.selectedId)) {
-      return _buildEmpty(colors);
+      return Semantics(label: 'Tab view - empty', child: _buildEmpty(colors));
     }
 
     final content = widget.tabs[widget.selectedId]!;
 
     if (content.lazy && _previousId != widget.selectedId) {
-      return _buildAnimatedTransition(colors, content);
+      return Semantics(label: 'Tab view - ${widget.selectedId}', child: _buildAnimatedTransition(colors, content));
     }
 
-    return _buildContent(colors, content);
+    return Semantics(label: 'Tab view - ${widget.selectedId}', child: _buildContent(colors, content));
   }
 
   Widget _buildEmpty(DesktopColorScheme colors) {

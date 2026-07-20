@@ -79,7 +79,9 @@ class _DesktopSplitPanelState extends State<DesktopSplitPanel> {
 
     final isHorizontal = widget.direction == SplitDirection.horizontal;
 
-    return LayoutBuilder(
+    return Semantics(
+      label: 'Split panel',
+      child: LayoutBuilder(
       builder: (context, constraints) {
         final total = isHorizontal ? constraints.maxWidth : constraints.maxHeight;
         final available = total - widget.dividerThickness;
@@ -107,6 +109,7 @@ class _DesktopSplitPanelState extends State<DesktopSplitPanel> {
           ),
         );
       },
+      ),
     );
   }
 

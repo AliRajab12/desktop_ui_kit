@@ -51,12 +51,17 @@ class DesktopCheckbox extends StatelessWidget {
     final effectiveOnTap = disabled ? null : () => onChanged?.call(!(value ?? false));
     final isIndeterminate = value == null;
 
-    return DesktopFormControl(
-      onTap: effectiveOnTap,
-      disabled: disabled,
+    return Semantics(
+      checked: value,
+      enabled: !disabled,
       label: label,
-      control: _CheckboxIndicator(value: value, isIndeterminate: isIndeterminate, disabled: disabled, colors: colors),
-      child: child,
+      child: DesktopFormControl(
+        onTap: effectiveOnTap,
+        disabled: disabled,
+        label: label,
+        control: _CheckboxIndicator(value: value, isIndeterminate: isIndeterminate, disabled: disabled, colors: colors),
+        child: child,
+      ),
     );
   }
 }

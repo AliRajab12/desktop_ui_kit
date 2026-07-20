@@ -55,12 +55,17 @@ class DesktopRadio<T> extends StatelessWidget {
     final colors = DesktopTheme.of(context).colors;
     final effectiveOnTap = disabled ? null : () => onChanged?.call(value);
 
-    return DesktopFormControl(
-      onTap: effectiveOnTap,
-      disabled: disabled,
+    return Semantics(
+      checked: _selected,
+      enabled: !disabled,
       label: label,
-      control: _RadioIndicator(selected: _selected, disabled: disabled, colors: colors),
-      child: child,
+      child: DesktopFormControl(
+        onTap: effectiveOnTap,
+        disabled: disabled,
+        label: label,
+        control: _RadioIndicator(selected: _selected, disabled: disabled, colors: colors),
+        child: child,
+      ),
     );
   }
 }

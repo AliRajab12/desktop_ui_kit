@@ -48,12 +48,17 @@ class DesktopSwitch extends StatelessWidget {
     final colors = DesktopTheme.of(context).colors;
     final effectiveOnTap = disabled ? null : () => onChanged?.call(!value);
 
-    return DesktopFormControl(
-      onTap: effectiveOnTap,
-      disabled: disabled,
+    return Semantics(
+      toggled: value,
+      enabled: !disabled,
       label: label,
-      control: _SwitchIndicator(value: value, disabled: disabled, colors: colors),
-      child: child,
+      child: DesktopFormControl(
+        onTap: effectiveOnTap,
+        disabled: disabled,
+        label: label,
+        control: _SwitchIndicator(value: value, disabled: disabled, colors: colors),
+        child: child,
+      ),
     );
   }
 }

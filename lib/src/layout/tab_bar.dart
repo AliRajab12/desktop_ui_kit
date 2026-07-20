@@ -101,9 +101,11 @@ class _DesktopTabBarState extends State<DesktopTabBar> {
   Widget build(BuildContext context) {
     final colors = DesktopTheme.of(context).colors;
 
-    return Focus(
-      onKeyEvent: _handleKeyEvent,
-      child: Container(
+    return Semantics(
+      label: 'Tab bar with ${widget.tabs.length} tabs',
+      child: Focus(
+        onKeyEvent: _handleKeyEvent,
+        child: Container(
         height: widget.height,
         decoration: BoxDecoration(
           color: colors.surface,
@@ -112,6 +114,7 @@ class _DesktopTabBarState extends State<DesktopTabBar> {
         child: widget.allowReorder
             ? _buildReorderable(colors)
             : _buildScrollable(colors),
+      ),
       ),
     );
   }

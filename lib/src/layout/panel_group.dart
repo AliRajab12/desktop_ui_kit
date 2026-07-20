@@ -76,7 +76,10 @@ class _DesktopPanelGroupState extends State<DesktopPanelGroup> {
   Widget build(BuildContext context) {
     if (widget.panels.isEmpty) return const SizedBox.shrink();
     final colors = DesktopTheme.of(context).colors;
-    return _collapsed ? _buildCollapsed(colors) : _buildExpanded(colors);
+    return Semantics(
+      label: 'Panel group with ${widget.panels.length} panels',
+      child: _collapsed ? _buildCollapsed(colors) : _buildExpanded(colors),
+    );
   }
 
   Widget _buildCollapsed(DesktopColorScheme colors) {

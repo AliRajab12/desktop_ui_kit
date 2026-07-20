@@ -136,8 +136,10 @@ class _DesktopToolbarState extends State<DesktopToolbar> {
     final theme = DesktopTheme.of(context);
     final colors = theme.colors;
 
-    return Container(
-      height: widget.height,
+    return Semantics(
+      label: 'Toolbar',
+      child: Container(
+        height: widget.height,
       padding: widget.padding ?? const EdgeInsets.symmetric(horizontal: DesktopTokens.spaceSm),
       decoration: BoxDecoration(
         color: widget.backgroundColor ?? colors.surface,
@@ -151,6 +153,7 @@ class _DesktopToolbarState extends State<DesktopToolbar> {
           return _buildItem(item, index, colors);
         }),
       ),
+    ),
     );
   }
 

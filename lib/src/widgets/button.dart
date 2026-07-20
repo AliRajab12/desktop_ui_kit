@@ -73,43 +73,48 @@ class DesktopButton extends StatelessWidget {
     final textColor = _resolveText(colors, disabled);
     final borderColor = _resolveBorder(colors, disabled);
 
-    return SizedBox(
-      height: DesktopTokens.buttonHeight,
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(DesktopTokens.radiusMd),
-          hoverColor: colors.surfaceHover.withAlpha(
-            disabled ? 0 : (DesktopTokens.opacityHover * 255).round(),
-          ),
-          splashColor: colors.surfacePressed.withAlpha(
-            disabled ? 0 : (DesktopTokens.opacityPressed * 255).round(),
-          ),
-          onTap: disabled ? null : onPressed,
-          child: AnimatedContainer(
-            duration: DesktopTokens.durationFast,
-            padding: const EdgeInsets.symmetric(horizontal: DesktopTokens.spaceLg),
-            decoration: BoxDecoration(
-              color: bgColor,
-              borderRadius: BorderRadius.circular(DesktopTokens.radiusMd),
-              border: Border.all(color: borderColor),
+    return Semantics(
+      button: true,
+      enabled: !disabled,
+      label: label,
+      child: SizedBox(
+        height: DesktopTokens.buttonHeight,
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(DesktopTokens.radiusMd),
+            hoverColor: colors.surfaceHover.withAlpha(
+              disabled ? 0 : (DesktopTokens.opacityHover * 255).round(),
             ),
-            child: Row(
-              mainAxisSize: expanded ? MainAxisSize.max : MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                if (loading)
-                  SizedBox(
-                    width: DesktopTokens.actionButtonIconSize,
-                    height: DesktopTokens.actionButtonIconSize,
-                    child: CircularProgressIndicator(strokeWidth: DesktopTokens.borderThick, color: textColor),
-                  )
-                else if (icon != null) ...[
-                  Icon(icon, size: DesktopTokens.iconSm, color: textColor),
-                  const SizedBox(width: DesktopTokens.spaceXs),
+            splashColor: colors.surfacePressed.withAlpha(
+              disabled ? 0 : (DesktopTokens.opacityPressed * 255).round(),
+            ),
+            onTap: disabled ? null : onPressed,
+            child: AnimatedContainer(
+              duration: DesktopTokens.durationFast,
+              padding: const EdgeInsets.symmetric(horizontal: DesktopTokens.spaceLg),
+              decoration: BoxDecoration(
+                color: bgColor,
+                borderRadius: BorderRadius.circular(DesktopTokens.radiusMd),
+                border: Border.all(color: borderColor),
+              ),
+              child: Row(
+                mainAxisSize: expanded ? MainAxisSize.max : MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (loading)
+                    SizedBox(
+                      width: DesktopTokens.actionButtonIconSize,
+                      height: DesktopTokens.actionButtonIconSize,
+                      child: CircularProgressIndicator(strokeWidth: DesktopTokens.borderThick, color: textColor),
+                    )
+                  else if (icon != null) ...[
+                    Icon(icon, size: DesktopTokens.iconSm, color: textColor),
+                    const SizedBox(width: DesktopTokens.spaceXs),
+                  ],
+                  Text(label, style: typography.label.copyWith(color: textColor)),
                 ],
-                Text(label, style: typography.label.copyWith(color: textColor)),
-              ],
+              ),
             ),
           ),
         ),
