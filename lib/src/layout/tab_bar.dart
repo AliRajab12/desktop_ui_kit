@@ -89,11 +89,13 @@ class DesktopTabBar extends StatefulWidget {
 
 class _DesktopTabBarState extends State<DesktopTabBar> {
   final ScrollController _scrollController = ScrollController();
+  final FocusNode _focusNode = FocusNode();
   int? _hoveredIndex;
 
   @override
   void dispose() {
     _scrollController.dispose();
+    _focusNode.dispose();
     super.dispose();
   }
 
@@ -104,6 +106,7 @@ class _DesktopTabBarState extends State<DesktopTabBar> {
     return Semantics(
       label: 'Tab bar with ${widget.tabs.length} tabs',
       child: Focus(
+        focusNode: _focusNode,
         onKeyEvent: _handleKeyEvent,
         child: Container(
         height: widget.height,
@@ -158,7 +161,10 @@ class _DesktopTabBarState extends State<DesktopTabBar> {
         isHovered: isHovered,
         showCloseButton: widget.showCloseButtons && tab.closable,
         colors: colors,
-        onTap: () => widget.onSelect?.call(tab.id),
+        onTap: () {
+          _focusNode.requestFocus();
+          widget.onSelect?.call(tab.id);
+        },
         onClose: () => widget.onClose?.call(tab.id),
         onHoverChanged: (h) => setState(() => _hoveredIndex = h ? index : null),
       ),

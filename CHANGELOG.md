@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.5.0 — Window Management, Tray & Updater
+
+- Added `DesktopMultiWindow` for creating and managing secondary application windows with inter-window messaging
+- Added `DesktopWindowController` for programmatic window state management
+- Added `DesktopWindowState` for configuring window geometry (size, position, title)
+- Added `DesktopSystemTray` for system tray icon management, context menus, and notifications
+- Added `DesktopUpdater` for platform-native auto-updates (Squirrel on Windows, Sparkle on macOS, AppImage on Linux)
+- Added `DesktopAnnouncer` widget for screen reader announcements with live regions
+- Added `DesktopAnnouncementBanner` for temporary overlay announcements
+- Added `DesktopShortcutLabel` for rendering keyboard shortcuts with platform-adaptive modifier badges (Ctrl/⌘)
+- All new widgets include full accessibility support via `Semantics`
+
 ## 0.4.0 — Theming Overrides & Accessibility
 
 - Added `copyWith()` to `DesktopThemeData` for selective field overrides

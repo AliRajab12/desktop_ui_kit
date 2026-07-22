@@ -27,6 +27,9 @@ class DesktopApp extends StatefulWidget {
   /// Optional dark color scheme override.
   final DesktopColorScheme? darkColors;
 
+  /// Whether to use high-contrast color schemes meeting WCAG AAA standards.
+  final bool highContrast;
+
   /// Creates a desktop app.
   const DesktopApp({
     super.key,
@@ -34,6 +37,7 @@ class DesktopApp extends StatefulWidget {
     this.themeMode = ThemeMode.system,
     this.lightColors,
     this.darkColors,
+    this.highContrast = false,
   });
 
   @override
@@ -43,8 +47,12 @@ class DesktopApp extends StatefulWidget {
 class _DesktopAppState extends State<DesktopApp> {
   @override
   Widget build(BuildContext context) {
-    final lightData = DesktopThemeData.light();
-    final darkData = DesktopThemeData.dark();
+    final lightData = widget.highContrast
+        ? DesktopThemeData.highContrastLight()
+        : DesktopThemeData.light();
+    final darkData = widget.highContrast
+        ? DesktopThemeData.highContrastDark()
+        : DesktopThemeData.dark();
 
     final effectiveLight = widget.lightColors != null
         ? lightData.copyWith(colors: widget.lightColors)

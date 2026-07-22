@@ -40,6 +40,22 @@ class DesktopThemeData {
         isDark: true,
       );
 
+  /// Creates a high-contrast light theme meeting WCAG AAA standards.
+  factory DesktopThemeData.highContrastLight() => DesktopThemeData(
+        colors: DesktopColorScheme.highContrastLight,
+        typography:
+            DesktopTextStyle.platformAdaptive(colorScheme: _highContrastLightColorScheme),
+        isDark: false,
+      );
+
+  /// Creates a high-contrast dark theme meeting WCAG AAA standards.
+  factory DesktopThemeData.highContrastDark() => DesktopThemeData(
+        colors: DesktopColorScheme.highContrastDark,
+        typography:
+            DesktopTextStyle.platformAdaptive(colorScheme: _highContrastDarkColorScheme),
+        isDark: true,
+      );
+
   /// Creates a copy of this theme data with optional overrides.
   DesktopThemeData copyWith({
     DesktopColorScheme? colors,
@@ -192,5 +208,33 @@ const _darkColorScheme = ColorScheme.dark(
   onSurfaceVariant: Color(0xFF6B7280),
   outline: Color(0xFF3F3F46),
   error: Color(0xFFFF6B6B),
+  onError: Color(0xFF000000),
+);
+
+const _highContrastLightColorScheme = ColorScheme.light(
+  primary: Color(0xFF0000CC),
+  onPrimary: Color(0xFFFFFFFF),
+  primaryContainer: Color(0xFFCCCCFF),
+  secondary: Color(0xFF1A1A1A),
+  onSecondary: Color(0xFFFFFFFF),
+  surface: Color(0xFFFFFFFF),
+  onSurface: Color(0xFF000000),
+  onSurfaceVariant: Color(0xFF333333),
+  outline: Color(0xFF000000),
+  error: Color(0xFFCC0000),
+  onError: Color(0xFFFFFFFF),
+);
+
+const _highContrastDarkColorScheme = ColorScheme.dark(
+  primary: Color(0xFF6699FF),
+  onPrimary: Color(0xFF000000),
+  primaryContainer: Color(0xFF003399),
+  secondary: Color(0xFFE0E0E0),
+  onSecondary: Color(0xFF000000),
+  surface: Color(0xFF000000),
+  onSurface: Color(0xFFFFFFFF),
+  onSurfaceVariant: Color(0xFFBDBDBD),
+  outline: Color(0xFFFFFFFF),
+  error: Color(0xFFFF6666),
   onError: Color(0xFF000000),
 );

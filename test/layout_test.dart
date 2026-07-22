@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -126,8 +127,6 @@ void main() {
     });
 
     testWidgets('calls onReorder when tab dragged', (tester) async {
-      int? reorderFrom;
-      int? reorderTo;
       await tester.pumpWidget(wrapWithTheme(
         DesktopTabBar(
           tabs: const [
@@ -135,10 +134,7 @@ void main() {
             DesktopTab(id: '2', label: 'B'),
           ],
           selectedId: '1',
-          onReorder: (fromIdx, toIdx) {
-            reorderFrom = fromIdx;
-            reorderTo = toIdx;
-          },
+          onReorder: (_, __) {},
         ),
       ));
       // onReorder is wired; test just verifies no crash
@@ -410,7 +406,12 @@ void main() {
           ],
         ),
       ));
+      final gesture = await tester.createGesture(kind: PointerDeviceKind.mouse);
+      await gesture.addPointer(location: tester.getCenter(find.byIcon(Icons.save)));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 600));
       expect(find.text('Save file'), findsOneWidget);
+      await gesture.removePointer();
     });
   });
 
@@ -557,9 +558,6 @@ void main() {
 
   group('DesktopResizableDivider', () {
     testWidgets('renders horizontal divider', (tester) async {
-      bool dragStarted = false;
-      bool dragEnded = false;
-      double dragDelta = 0;
       await tester.pumpWidget(wrapWithTheme(
         SizedBox(
           height: 200,
@@ -568,9 +566,9 @@ void main() {
             isHorizontal: true,
             isDragging: false,
             colors: DesktopThemeData.light().colors,
-            onDragUpdate: (d) => dragDelta = d,
-            onDragStart: () => dragStarted = true,
-            onDragEnd: () => dragEnded = true,
+            onDragUpdate: (_) {},
+            onDragStart: () {},
+            onDragEnd: () {},
           ),
         ),
       ));

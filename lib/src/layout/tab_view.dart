@@ -71,7 +71,7 @@ class _DesktopTabViewState extends State<DesktopTabView> {
 
     final content = widget.tabs[widget.selectedId]!;
 
-    if (content.lazy && _previousId != widget.selectedId) {
+    if (_previousId != widget.selectedId) {
       return Semantics(label: 'Tab view - ${widget.selectedId}', child: _buildAnimatedTransition(colors, content));
     }
 

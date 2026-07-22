@@ -17,6 +17,7 @@ export 'src/utils/platform.dart';
 export 'src/accessibility/semantics.dart';
 export 'src/accessibility/focus_indicator.dart';
 export 'src/accessibility/reduce_motion.dart';
+export 'src/accessibility/announcer.dart';
 
 export 'src/widgets/button.dart';
 export 'src/widgets/checkbox.dart';
@@ -32,6 +33,7 @@ export 'src/widgets/split_panel.dart';
 export 'src/widgets/switch.dart';
 export 'src/widgets/text_field.dart';
 export 'src/widgets/tree_view.dart';
+export 'src/widgets/shortcut_label.dart';
 
 export 'src/layout/tab_bar.dart';
 export 'src/layout/tab_view.dart';
@@ -39,3 +41,9 @@ export 'src/layout/toolbar.dart';
 export 'src/layout/dock_panel.dart';
 export 'src/layout/panel_group.dart';
 export 'src/layout/resizable_divider.dart';
+
+export 'src/window/window_state.dart';
+export 'src/window/window_controller.dart';
+export 'src/window/multi_window.dart';
+export 'src/tray/system_tray.dart';
+export 'src/updater/updater.dart';
