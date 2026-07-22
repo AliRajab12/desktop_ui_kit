@@ -34,6 +34,10 @@ export 'src/widgets/switch.dart';
 export 'src/widgets/text_field.dart';
 export 'src/widgets/tree_view.dart';
 export 'src/widgets/shortcut_label.dart';
+export 'src/widgets/context_menu.dart';
+export 'src/widgets/toast.dart';
+export 'src/widgets/progress.dart';
+export 'src/widgets/breadcrumb.dart';
 
 export 'src/layout/tab_bar.dart';
 export 'src/layout/tab_view.dart';
@@ -41,6 +45,7 @@ export 'src/layout/toolbar.dart';
 export 'src/layout/dock_panel.dart';
 export 'src/layout/panel_group.dart';
 export 'src/layout/resizable_divider.dart';
+export 'src/layout/status_bar.dart';
 
 export 'src/window/window_state.dart';
 export 'src/window/window_controller.dart';
