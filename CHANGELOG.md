@@ -1,7 +1,11 @@
 # Changelog
 
 ## 0.6.0 — Navigation & Date Picker
-
+- Added `DesktopContextMenu` for right-click menus with nested submenus and keyboard navigation
+- Added `DesktopStatusBar` for bottom status bar with left/right sections and separators
+- Added `DesktopToast` for stacked notifications with auto-dismiss, action buttons, and queuing
+- Added `DesktopProgress` for indeterminate/determinate circular and bar variants
+- Added `DesktopBreadcrumb` for path navigation with overflow ellipsis and keyboard nav
 - Added `DesktopSidebar` vertical navigation rail with compact/expanded modes, section dividers, and custom widget badges
 - Added `DesktopDatePicker` with calendar popup, keyboard-first navigation, and month/year controls
 - 26 new tests (12 sidebar, 14 date picker)
