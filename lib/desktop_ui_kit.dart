@@ -38,7 +38,9 @@ export 'src/widgets/context_menu.dart';
 export 'src/widgets/toast.dart';
 export 'src/widgets/progress.dart';
 export 'src/widgets/breadcrumb.dart';
+export 'src/widgets/date_picker.dart';
 
+export 'src/layout/sidebar.dart';
 export 'src/layout/tab_bar.dart';
 export 'src/layout/tab_view.dart';
 export 'src/layout/toolbar.dart';

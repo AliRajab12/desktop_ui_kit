@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.0 — Navigation & Date Picker
+
+- Added `DesktopSidebar` vertical navigation rail with compact/expanded modes, section dividers, and custom widget badges
+- Added `DesktopDatePicker` with calendar popup, keyboard-first navigation, and month/year controls
+- 26 new tests (12 sidebar, 14 date picker)
+
 ## 0.5.0 — Window Management, Tray & Updater
 
 - Added `DesktopMultiWindow` for creating and managing secondary application windows with inter-window messaging

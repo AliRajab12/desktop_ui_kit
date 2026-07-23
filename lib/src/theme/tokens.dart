@@ -261,4 +261,33 @@ class DesktopTokens {
 
   /// Loading indicator stroke width (2px).
   static const double loadingIndicatorStrokeWidth = 2;
+
+  // ── Sidebar ──────────────────────────────────────────
+  /// Sidebar expanded width (240px).
+  static const double sidebarExpandedWidth = 240;
+
+  /// Sidebar compact width (56px).
+  static const double sidebarCompactWidth = 56;
+
+  /// Sidebar item height (36px).
+  static const double sidebarItemHeight = 36;
+
+  /// Sidebar icon size (20px).
+  static const double sidebarIconSize = 20;
+
+  /// Sidebar badge size (18px).
+  static const double sidebarBadgeSize = 18;
+
+  /// Sidebar section label height (24px).
+  static const double sidebarSectionHeight = 24;
+
+  // ── Date Picker ──────────────────────────────────────
+  /// Date picker popup width (280px).
+  static const double datePickerWidth = 280;
+
+  /// Date picker cell size (32px).
+  static const double datePickerCellSize = 32;
+
+  /// Date picker header height (40px).
+  static const double datePickerHeaderHeight = 40;
 }
